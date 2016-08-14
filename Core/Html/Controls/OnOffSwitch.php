@@ -34,6 +34,12 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
     private $switch = [];
 
     /**
+     *
+     * @var int
+     */
+    private $state = 0;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -46,7 +52,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      *
      * @param string $on
      */
-    public function setOnString($on)
+    public function setOnString(string $on)
     {
         $this->strings['on'] = $on;
     }
@@ -56,7 +62,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      *
      * @param string $off
      */
-    public function setOffString($off)
+    public function setOffString(string $off)
     {
         $this->strings['off'] = $off;
     }
@@ -89,12 +95,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      */
     public function switchOn()
     {
-        $this->createSwitches();
-
-        $this->switch['on']->isSelected();
-        $this->switch['off']->notSelected();
-
-        $this->html->setValue(1);
+        $this->state = 1;
     }
 
     /**
@@ -102,12 +103,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      */
     public function switchOff()
     {
-        $this->createSwitches();
-
-        $this->switch['on']->notSelected();
-        $this->switch['off']->isSelected();
-
-        $this->html->setValue(0);
+        $this->state = 0;
     }
 
     /**
@@ -136,8 +132,6 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
             Throw new ControlException('Wrong state for on/off switch.');
         }
 
-        $this->createSwitches();
-
         switch ($state) {
             case 0:
             case false:
@@ -159,7 +153,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      */
     public function getState()
     {
-        return $this->getValue();
+        return $this->html->getValue();
     }
 
     /**
@@ -181,7 +175,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
                 $value = $option->getInner();
             }
 
-            if ($this->getValue() == $value) {
+            if ($this->state == $value) {
                 $option->isSelected();
             }
 
