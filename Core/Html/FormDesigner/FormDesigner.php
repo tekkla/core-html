@@ -1,7 +1,6 @@
 <?php
 namespace Core\Html\FormDesigner;
 
-use Core\Data\Container\Container;
 use Core\Html\Form\Form;
 use Core\Html\Form\Checkbox;
 use Core\Html\Form\Select;
@@ -623,15 +622,15 @@ final class FormDesigner implements HtmlBuildableInterface
         $group_name = $group->getName();
 
         // If group has a name, add it to the names array
-        if (!empty($group_name)) {
+        if ($group_name === 0 || !empty($group_name)) {
             $names[] = $group_name;
         }
 
         // Get grouperrors
-        $group_errors = !empty($group_name) && !empty($errors[$group_name]) ? $errors[$group_name] : $errors;
+        $group_errors = ($group_name === 0 || !empty($group_name)) && !empty($errors[$group_name]) ? $errors[$group_name] : $errors;
 
         // Get group data
-        $group_data = !empty($group_name) && !empty($data[$group_name]) ? $data[$group_name] : $data;
+        $group_data = ($group_name === 0 || !empty($group_name)) && !empty($data[$group_name]) ? $data[$group_name] : $data;
 
         // Build elements
         $elements = $group->getElements();
