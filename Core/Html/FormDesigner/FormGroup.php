@@ -148,7 +148,7 @@ class FormGroup
         }
 
         // Create element
-        $element = $this->elementFactory('control', $control);
+        $this->elementFactory('control', $control);
 
         return $control;
     }
