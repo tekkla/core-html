@@ -2,7 +2,6 @@
 namespace Core\Html\Controls;
 
 use Core\Html\Form\Select;
-use Core\Toolbox\Arrays\IsAssoc;
 
 /**
  * DataSelect.php
@@ -37,9 +36,27 @@ class DataSelect extends Select
     protected $selected;
 
     /**
+     * Flag to use index of datasource as options value
+     *
+     * @var bool
+     */
+    protected $index_is_value = true;
+
+    /**
+     * Flags control to use the index of datasource as value for options value content
+     *
+     * @param bool $index_is_value
+     */
+    public function setIndexIsValue(bool $index_is_value)
+    {
+        $this->index_is_value = $index_is_value;
+    }
+
+    /**
      * Sets a datasource
      *
-     * @praram array $datasource Array with data
+     * @param array $datasource
+     *            Array with data
      *
      * @return \Core\Html\Controls\DataSelect
      */
@@ -53,7 +70,8 @@ class DataSelect extends Select
     /**
      * Set one or more values to set as selected
      *
-     * @param int|string|array
+     * @param
+     *            int|string|array
      *
      * @return \Core\Html\Controls\DataSelect
      */
@@ -71,32 +89,24 @@ class DataSelect extends Select
      */
     public function build()
     {
-        $array = new IsAssoc($this->datasource);
-        $ds_is_assoc = $array->isAssoc();
-
-
-        foreach ($this->datasource as $row) {
+        foreach ($this->datasource as $index => $val) {
 
             $option = $this->createOption();
 
             // inner will always be used
-            $option->setInner($row[1]);
-
-            // if we have an assoc datasource we use the value attribute
-            if ($ds_is_assoc) {
-                $option->setValue($row[0]);
-            }
+            $option->setInner($val);
+            $option->setValue($this->index_is_value ? $index : $val);
 
             // in dependence of the data type is value to be selected $val or $inner
-            if (isset($this->selected)) {
+            if (!empty($this->selected)) {
                 // A list of selected?
                 if (is_array($this->selected)) {
-                    if (array_search(($ds_is_assoc ? $row[0] : $row[1]), $this->selected)) {
+                    if (array_search(($this->index_is_value ? $index : $val), $this->selected)) {
                         $option->isSelected(1);
                     }
                 } // Or a value to look for?
                 else {
-                    if ($this->selected == ($ds_is_assoc ? $row[0] : $row[1])) {
+                    if ($this->selected == ($this->index_is_value ? $index : $val)) {
                         $option->isSelected(1);
                     }
                 }
