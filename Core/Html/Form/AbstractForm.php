@@ -56,6 +56,13 @@ class AbstractForm extends AbstractHtml
     private $is_array = false;
 
     /**
+     * Size of control
+     *
+     * @var string
+     */
+    private $control_size;
+
+    /**
      * Public html object of a form label
      *
      * @var Label
@@ -342,5 +349,36 @@ class AbstractForm extends AbstractHtml
         $this->is_array = (bool) $state;
 
         return $this;
+    }
+
+    /**
+     * Sets the visual size of control
+     *
+     * @param string $size
+     *
+     * @throws FormException
+     */
+    public function setControlSize(string $size)
+    {
+        $allowed_sizes = [
+            'lg',
+            'md',
+            'sm',
+            'xs'
+        ];
+
+        if (!in_array($size, $allowed_sizes)) {
+            Throw new FormException(sprintf('Size "%s" is no valid controlsize. Allowed sizes are %s.', $size, implode(', ', $allowed_sizes)));
+        }
+
+        $this->control_size = $size;
+    }
+
+    /**
+     * Returns the visual size of control
+     * @return string
+     */
+    public function getControlSize(): string {
+        return $this->control_size ?? '';
     }
 }

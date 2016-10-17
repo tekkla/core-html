@@ -635,6 +635,9 @@ final class FormDesigner implements HtmlBuildableInterface
         // Build elements
         $elements = $group->getElements();
 
+        // Get the control size set for this group
+        $control_size = $group->getControlSize();
+
         /* @var $element \Core\Html\FormDesigner\FormElement */
         foreach ($elements as $element) {
 
@@ -645,6 +648,10 @@ final class FormDesigner implements HtmlBuildableInterface
             switch ($element->getType()) {
 
                 case 'control':
+
+                    if (!empty($control_size)) {
+                        $content->setControlSize($control_size);
+                    }
 
                     // Get control name
                     $name = $content->getName();

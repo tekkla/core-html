@@ -48,6 +48,12 @@ class FormGroup
 
     /**
      *
+     * @var string
+     */
+    private $control_size;
+
+    /**
+     *
      * @var HtmlFactory
      */
     public $factory;
@@ -113,7 +119,7 @@ class FormGroup
      * @param string $name
      *            Name of the control. Ths name is used to bind the control to a model field.
      *
-     * @return \Core\Html\AbstractForm
+     * @return \Core\Html\Form\AbstractForm
      */
     public function &addControl($control, $name='', $label = '', $value = '', $description = '', $unbound = false)
     {
@@ -243,5 +249,37 @@ class FormGroup
     public function getElements()
     {
         return $this->elements;
+    }
+
+    /**
+     * Sets the controlsize for all controls in this group
+     *
+     * @param string $size
+     *
+     * @throws FormDesignerException
+     */
+    public function setControlSize(string $size)
+    {
+        $allowed_sizes = [
+            'lg',
+            'md',
+            'sm',
+            'xs'
+        ];
+
+        if (!in_array($size, $allowed_sizes)) {
+            Throw new FormDesignerException(sprintf('Size "%s" is no valid controlsize. Allowed sizes are %s.', $size, implode(', ', $allowed_sizes)));
+        }
+
+        $this->control_size = $size;
+    }
+
+    /**
+     * Returns the control size of this group
+     *
+     * @return string
+     */
+    public function getControlSize(): string {
+        return $this->control_size ?? '';
     }
 }

@@ -17,14 +17,34 @@ use Core\Html\Form\Input;
 class ControlBuilder
 {
 
+    /**
+     *
+     * @var AbstractForm
+     */
     private $control;
 
+    /**
+     *
+     * @var array
+     */
     private $errors = [];
 
+    /**
+     *
+     * @var string
+     */
     private $display_mode = 'v';
 
+    /**
+     *
+     * @var integer
+     */
     private $label_width = 3;
 
+    /**
+     *
+     * @var string
+     */
     private $grid_size = 'sm';
 
     /**
@@ -117,7 +137,7 @@ class ControlBuilder
                 break;
 
             default:
-                $container = '<div class="form-group{state}">{label}{control}' . ($this->display_mode == 'v' ? '{help}{error}' : '') . '</div>';
+                $container = '<div class="form-group{state}{size}">{label}{control}' . ($this->display_mode == 'v' ? '{help}{error}' : '') . '</div>';
 
                 if (property_exists($this->control, 'html')) {
                     $this->control->html->addCss('form-control');
@@ -132,6 +152,11 @@ class ControlBuilder
         if ($type == 'input' && $this->control->getType() == 'hidden') {
             return $this->control->build();
         }
+
+        // Has the control a specific size?
+        $control_size = $this->control->getControlSize();
+        $container = str_replace('{size}', $control_size ? ' form-group-' . $control_size : '', $container);
+
 
         // Insert groupstate
         $container = str_replace('{state}', $this->errors ? ' has-error' : '', $container);
@@ -241,4 +266,3 @@ class ControlBuilder
         return $container;
     }
 }
-
