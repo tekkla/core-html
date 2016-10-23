@@ -10,7 +10,7 @@ use Core\Html\Controls\DateTimePicker;
  * @copyright 2015
  * @license MIT
  */
-class Time12sControl extends DateTimePicker
+class Time12Control extends DateTimePicker
 {
 
     protected $format = 'hh:mm A/PM';
