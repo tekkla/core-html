@@ -4,15 +4,15 @@ namespace Core\Html\Elements;
 use Core\Html\AbstractHtml;
 
 /**
- * Adress.php
+ * Address.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
  * @copyright 2015
  * @license MIT
  */
-class Abbr extends AbstractHtml
+class Address extends AbstractHtml
 {
 
-    protected $element = 'adress';
+    protected $element = 'address';
 }
 
