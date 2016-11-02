@@ -775,6 +775,8 @@ final class FormDesigner implements HtmlBuildableInterface
             }
         }
 
-        return $group->html->addInner($html)->build();
+        $group->html->addInner($html);
+
+        return $group->html->build();
     }
 }

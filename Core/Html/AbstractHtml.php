@@ -93,14 +93,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Sets the element type like 'div', 'input', 'p' etc
      *
      * @param string $element
-     *
-     * @return AbstractHtml
      */
-    public function setElement(string $element): AbstractHtml
+    public function setElement(string $element)
     {
         $this->element = $element;
-
-        return $this;
     }
 
     /**
@@ -117,26 +113,18 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Sets the element name
      *
      * @param string $name
-     *
-     * @return AbstractHtml
      */
-    public function setName(string $name): AbstractHtml
+    public function setName(string $name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
      * Removes element name
-     *
-     * @return AbstractHtml
      */
-    public function removeName(): AbstractHtml
+    public function removeName()
     {
         $this->name = '';
-
-        return $this;
     }
 
     /**
@@ -155,13 +143,11 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @param string $id
      *
-     * @return AbstractHtml
+     *
      */
-    public function setId(string $id): AbstractHtml
+    public function setId(string $id)
     {
-        $this->id = (string) $id;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
@@ -176,14 +162,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
 
     /**
      * Removes id from elements
-     *
-     * @return AbstractHtml
      */
-    public function removeId(): AbstractHtml
+    public function removeId()
     {
         $this->id = '';
-
-        return $this;
     }
 
     /**
@@ -194,28 +176,20 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * </code>
      *
      * @param string $inner
-     *
-     * @return AbstractHtml
      */
-    public function setInner(string $inner): AbstractHtml
+    public function setInner(string $inner)
     {
-        $this->inner = (string) $inner;
-
-        return $this;
+        $this->inner = $inner;
     }
 
     /**
      * Adds content to existing inner conntent
      *
      * @param string $content
-     *
-     * @return AbstractHtml
      */
-    public function addInner(string $content): AbstractHtml
+    public function addInner(string $content)
     {
         $this->inner .= $content;
-
-        return $this;
     }
 
     /**
@@ -234,28 +208,20 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Tries to load string from txt storage when argument begins with "txt-".
      *
      * @param string $title
-     *
-     * @return AbstractHtml
      */
-    public function setTitle(string $title): AbstractHtml
+    public function setTitle(string $title)
     {
-        $this->addAttribute('title', (string) $title);
-
-        return $this;
+        $this->attribute['title'] = $title;
     }
 
     /**
      * Sets tabindex attribute
      *
      * @param int $tabindex
-     *
-     * @return AbstractHtml
      */
-    public function setTabindex(int $tabindex): AbstractHtml
+    public function setTabindex(int $tabindex)
     {
-        $this->addAttribute('tabindex', $tabindex);
-
-        return $this;
+        $this->attribute['tabindex'] = $tabindex;
     }
 
     /**
@@ -263,10 +229,8 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Accepts single value, a string of space separated classnames or an array of classnames.
      *
      * @param string|array $css
-     *
-     * @return AbstractHtml
      */
-    public function addCss($css): AbstractHtml
+    public function addCss($css)
     {
         if (!is_array($css)) {
 
@@ -281,8 +245,6 @@ abstract class AbstractHtml implements HtmlBuildableInterface
         foreach ($css as $class) {
             $this->css[$class] = $class;
         }
-
-        return $this;
     }
 
     /**
@@ -332,15 +294,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Although no parameters are visible the method handles two different
      * types of parameter. Set two params for "key" and "value" or an array
      * with a collection of keys and values.
-     *
-     * @return AbstractHtml
      */
-    public function addStyle(): AbstractHtml
+    public function addStyle()
     {
-        $type = func_num_args() == 1 ? 'pair_array' : 'pair_one';
-        $this->addTo(func_get_args(), $type);
-
-        return $this;
+        $this->addTo('style', func_get_args());
     }
 
     /**
@@ -348,15 +305,11 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @param string $style
      *
-     * @return AbstractHtml
+     *
      */
-    public function removeStyle(string $style): AbstractHtml
+    public function removeStyle(string $style)
     {
-        if (isset($this->style[$style])) {
-            unset($this->style[$style]);
-        }
-
-        return $this;
+        unset($this->style[$style]);
     }
 
     /**
@@ -365,14 +318,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Although no parameters are visible the method handles two different
      * types of parameter. Set two params for "key" and "value" or an array
      * with a collection of keys and values.
-     *
-     * @return AbstractHtml
      */
-    public function addEvent(): AbstractHtml
+    public function addEvent()
     {
-        $this->addTo(func_get_args());
-
-        return $this;
+        $this->addTo('event', func_get_args());
     }
 
     /**
@@ -380,15 +329,15 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @param string $role
      */
-    public function setRole(string $role): AbstractHtml
+    public function setRole(string $role)
     {
         $this->attribute['role'] = $role;
-
-        return $this;
     }
 
     /**
      * Returns value of set role attribute
+     *
+     * @return string
      */
     public function getRole(): string
     {
@@ -401,14 +350,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * types of parameter. Set two params for "key" and "value" or an array
      * with a collection of keys and values.
      * This method takes care of single attributes like "selected" or "disabled".
-     *
-     * @return AbstractHtml
      */
     public function addAttribute()
     {
-        $this->addTo(func_get_args());
-
-        return $this;
+        $this->addTo('attribute', func_get_args());
     }
 
     /**
@@ -416,13 +361,9 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @param string $attribute
      */
-    public function removeAttribute(string $attribute): AbstractHtml
+    public function removeAttribute(string $attribute)
     {
-        if (isset($this->attribute[$attribute])) {
-            unset($this->attribute[$attribute]);
-        }
-
-        return $this;
+        unset($this->attribute[$attribute]);
     }
 
     /**
@@ -434,7 +375,7 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @return string
      */
-    public function getAttribute(string $attribute)
+    public function getAttribute(string $attribute): string
     {
         if (!isset($this->attribute[$attribute])) {
             Throw new HtmlException(sprintf('The requested attribute "%s" does not exits in this html element "%s".', $attribute, get_called_class()));
@@ -447,6 +388,8 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Check for an set attribute
      *
      * @param string $attribute
+     *
+     * @return boolean
      */
     public function checkAttribute(string $attribute): bool
     {
@@ -459,14 +402,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Although no parameters are visible the method handles two different
      * types of parameter. Set two params for "key" and "value" or an array
      * with a collection of keys and values.
-     *
-     * @return AbstractHtml
      */
     public function addData()
     {
-        $this->addTo(func_get_args());
-
-        return $this;
+        $this->addTo('data', func_get_args());
     }
 
     /**
@@ -490,25 +429,19 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @return boolean
      */
-    public function checkData($data)
+    public function checkData(string $data): bool
     {
         return isset($this->data[$data]);
     }
 
     /**
-     * Removes a data ttribute
+     * Removes a data attribute
      *
      * @param string $data
-     *
-     * @return AbstractHtml
      */
-    public function removeData(string $data): AbstractHtml
+    public function removeData(string $data)
     {
-        if (isset($this->data[$data])) {
-            unset($this->data[$data]);
-        }
-
-        return $this;
+        unset($this->data[$data]);
     }
 
     /**
@@ -517,14 +450,10 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Although no parameters are visible the method handles two different
      * types of parameter. Set two params for "key" and "value" or an array
      * with a collection of keys and values.
-     *
-     * @return AbstractHtml
      */
     public function addAria()
     {
-        $this->addTo(func_get_args());
-
-        return $this;
+        $this->addTo('aria', func_get_args());
     }
 
     /**
@@ -558,31 +487,25 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @param string $aria
      *
-     * @return AbstractHtml
+     *
      */
-    public function removeAria(string $aria): AbstractHtml
+    public function removeAria(string $aria)
     {
-        if (isset($this->aria[$aria])) {
-            unset($this->aria[$aria]);
-        }
-
-        return $this;
+        unset($this->aria[$aria]);
     }
 
     /**
      * Adds single and multiple elements to properties
      *
+     * @param string $func
+     *            Name of the attribute eg property the arguments ($args)have to be added
      * @param mixed $args
-     *
-     * @param unknown $type
      */
-    private function addTo($args)
+    private function addTo(string $func, $args)
     {
-        $dt = debug_backtrace();
-        $func = strtolower(str_replace('add', '', $dt[1]['function']));
-
-        if (!isset($this->{$func}) || (isset($this->{$func}) && !is_array($this->$func))) {
-            $this->{$func} = [];
+        // Only already existing attributes can get filled with the args
+        if (!isset($this->{$func})) {
+            Throw new HtmlException(sprintf('Type "%s" is not allowed as html property/attribute', $func));
         }
 
         // Do we have one argument or two?
@@ -605,7 +528,7 @@ abstract class AbstractHtml implements HtmlBuildableInterface
                 }
                 else {
                     foreach ($args[0] as $val) {
-                        $this->{$func}[] = $val;
+                        $this->{$func}[$val] = false;
                     }
                 }
             }
@@ -619,19 +542,17 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      * Hidden attribute setter and checker
      *
      * Accepts parameter "null", "0" and "1".
-     * "null" means to check for a set disabled attribute
-     * "0" means to remove disabled attribute
-     * "1" means to set disabled attribute
+     * "null" eg no parameter means to check for a set hidden attribute
+     * "0" means to remove hidden attribute
+     * "1" means to set hidden attribute
      *
      * @param int $state
-     *
-     * @return AbstractHtml
      */
-    public function isHidden($state = null): AbstractHtml
+    public function isHidden(int $state = null)
     {
         $attrib = 'hidden';
 
-        if (!isset($state)) {
+        if (empty($state)) {
             return $this->checkAttribute($attrib);
         }
 
@@ -641,8 +562,6 @@ abstract class AbstractHtml implements HtmlBuildableInterface
         else {
             $this->addAttribute($attrib);
         }
-
-        return $this;
     }
 
     /**
@@ -650,7 +569,7 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @return string
      */
-    public function build()
+    public function build(): string
     {
         $html_attr = [];
 
