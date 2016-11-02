@@ -2,8 +2,6 @@
 namespace Core\Html\Controls;
 
 use Core\Html\Form\Select;
-use Core\Html\HtmlBuildableInterface;
-use Core\Html\Form\AbstractForm;
 
 /**
  * OnOffSwitch.php
@@ -12,14 +10,8 @@ use Core\Html\Form\AbstractForm;
  * @copyright 2016
  * @license MIT
  */
-class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
+class OnOffSwitch extends Select
 {
-
-    /**
-     *
-     * @var Select
-     */
-    public $html;
 
     /**
      *
@@ -38,14 +30,6 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      * @var int
      */
     private $state = 0;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->html = new Select();
-    }
 
     /**
      * Sets the string for the on state switch
@@ -153,7 +137,7 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
      */
     public function getState()
     {
-        return $this->html->getValue();
+        return $this->getValue();
     }
 
     /**
@@ -179,20 +163,9 @@ class OnOffSwitch extends AbstractForm implements HtmlBuildableInterface
                 $option->isSelected();
             }
 
-            $this->html->addOption($option);
+            $this->addOption($option);
         }
 
-        return $this->html->build();
-    }
-
-    /**
-     * Send all html object related method calls directly to the internal html object
-     *
-     * @param string $method
-     * @param unknown $arguments
-     */
-    public function __call($method, $arguments)
-    {
-        return $this->html->{$method}($arguments);
+        return parent::build();
     }
 }
