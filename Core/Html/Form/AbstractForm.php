@@ -18,7 +18,7 @@ class AbstractForm extends AbstractHtml
      *
      * @var string
      */
-    private $description = '';
+    private $description;
 
     /**
      * Flag for binding element to a model field or not
@@ -32,7 +32,7 @@ class AbstractForm extends AbstractHtml
      *
      * @var string
      */
-    private $element_width = '';
+    private $element_width;
 
     /**
      * Value for creation an hidden field for the original value
@@ -71,15 +71,11 @@ class AbstractForm extends AbstractHtml
 
     /**
      * Flags this element to use no label
-     *
-     * @return AbstractForm
      */
-    public function noLabel(): AbstractForm
+    public function noLabel()
     {
         unset($this->label);
         $this->use_label = false;
-
-        return $this;
     }
 
     /**
@@ -87,15 +83,11 @@ class AbstractForm extends AbstractHtml
      *
      * @param string $label_text
      *            The text to show as label
-     *
-     * @return Label
      */
-    public function setLabel($label_text)
+    public function setLabel(string $label_text)
     {
         $this->label = $this->factory->create('Form\Label');
         $this->label->setInner($label_text);
-
-        return $this->label;
     }
 
     /**
@@ -121,28 +113,19 @@ class AbstractForm extends AbstractHtml
     }
 
     /**
-     * Add autofocus attribute
-     *
-     * @return AbstractForm
+     * Adds autofocus attribute
      */
-    public function setAutofocus(): AbstractForm
+    public function setAutofocus()
     {
         $this->addAttribute('autofocus');
-
-        return $this;
     }
 
     /**
-     * Declare this element as unbound, so the FormDesigner does not need to
-     * try to fill it with data from the Model.
-     *
-     * @return AbstractForm
+     * Declare this element as unbound, so the FormDesigner does not need to try to fill it with data from the Model.
      */
-    public function setUnbound(): AbstractForm
+    public function setUnbound()
     {
         $this->bound = false;
-
-        return $this;
     }
 
     /**
@@ -170,14 +153,10 @@ class AbstractForm extends AbstractHtml
      * Set a description which will be used as a help block
      *
      * @param sting $text
-     *
-     * @return AbstractForm
      */
-    public function setDescription(string $text): AbstractForm
+    public function setDescription(string $text)
     {
         $this->description = $text;
-
-        return $this;
     }
 
     /**
@@ -187,7 +166,7 @@ class AbstractForm extends AbstractHtml
      */
     public function hasDescription(): bool
     {
-        return ! empty($this->description);
+        return isset($this->description);
     }
 
     /**
@@ -197,14 +176,13 @@ class AbstractForm extends AbstractHtml
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description ?? '';
     }
 
     /**
-     * Handles the creation state of an hidden element for comparision.
-     * If $compare parameter not set, the method returns the current state.
+     * Handles the creation state of an hidden element for comparision
      *
-     * @param boolean $state
+     * If $compare parameter not set, the method returns the current state.
      *
      * @return bool
      */
@@ -217,23 +195,25 @@ class AbstractForm extends AbstractHtml
      * Sets compare field value
      *
      * @param mixed $compare_value
-     *
-     * @return AbstractForm
      */
-    public function setCompare($compare_value): AbstractForm
+    public function setCompare($compare_value)
     {
         $this->compare_value = $compare_value;
-
-        return $this;
     }
 
     /**
-     * Returns compare field value
+     * Returns compare field value and throws FormException if no value is set
+     *
+     * @throws FormException
      *
      * @return mixed
      */
     public function getCompare()
     {
+        if (!isset($this->compare_value)) {
+            Throw new FormException('No compare value set.');
+        }
+
         return $this->compare_value;
     }
 
@@ -244,10 +224,8 @@ class AbstractForm extends AbstractHtml
      *            BS grid sizes like "sm-3" or "lg-5". Needed "col-" will be added by the method.
      *
      * @throws FormException
-     *
-     * @return AbstractForm
      */
-    public function setElementWidth(string $element_width = 'sm-3'): AbstractForm
+    public function setElementWidth(string $element_width = 'sm-3')
     {
         $sizes = [
             'xs',
@@ -255,31 +233,30 @@ class AbstractForm extends AbstractHtml
             'md',
             'lg'
         ];
+
         $allowed_widths = [];
 
         foreach ($sizes as $size) {
-            for ($i = 1; $i < 13; $i ++) {
+            for ($i = 1; $i < 13; $i++) {
                 $allowed_widths[] = $size . '-' . $i;
             }
         }
 
-        if (! in_array($element_width, $allowed_widths)) {
+        if (!in_array($element_width, $allowed_widths)) {
             Throw new FormException(sprintf('Element width "%s" is not valid. Select from: %s', $element_width, implode(', ', $sizes)));
         }
 
         $this->element_width = 'col-' . $element_width;
-
-        return $this;
     }
 
     /**
-     * Returns a set element width or boolean false if not set.
+     * Returns a set element width or empty string if not set
      *
-     * @return string|boolean
+     * @return string
      */
-    public function getElementWidth()
+    public function getElementWidth(): string
     {
-        return $this->element_width;
+        return $this->element_width ?? '';
     }
 
     /**
@@ -287,68 +264,43 @@ class AbstractForm extends AbstractHtml
      */
     public function hasElementWidth()
     {
-        return ! empty($this->element_width);
+        return isset($this->element_width);
     }
 
     /**
      * Sets an input mask for the elements
      *
      * @param string $mask
-     *
-     * @return AbstractForm
      */
-    public function setMask(string $mask):AbstractForm
+    public function setMask(string $mask)
     {
         $this->addData('form-mask', $mask);
-
-        return $this;
     }
 
     /**
-     * Disabled attribute setter and checker
+     * Checks if form control is disabled
      *
-     * Accepts parameter "null", "0" and "1".
-     * "null" means to check for a set disabled attribute
-     * "0" means to remove disabled attribute
-     * "1" means to set disabled attribute
-     *
-     * @param int $state
-     *
-     * @return AbstractForm
+     * @return boolean
      */
-    public function isDisabled($state = null):AbstractForm
+    public function isDisabled(): bool
     {
-        $attrib = 'disabled';
-
-        if (! isset($state)) {
-            return $this->checkAttribute($attrib);
-        }
-
-        if ($state == 0) {
-            $this->removeAttribute($attrib);
-        }
-        else {
-            $this->addAttribute($attrib);
-        }
-
-        return $this;
+        return $this->checkAttribute('disabled');
     }
 
     /**
-     *
-     * @param mixed $state
-     *
-     * @return AbstractForm
+     * Sets form control to be disabled by setting 'disabled' attribute
      */
-    public function isArray($state = null):AbstractForm
+    public function setDisabled()
     {
-        if (empty($state)) {
-            return $this->is_array;
-        }
+        $this->addAttribute('disabled');
+    }
 
-        $this->is_array = (bool) $state;
-
-        return $this;
+    /**
+     * Sets form control to be enabled by removing 'disabled' attribute
+     */
+    public function setEnabled()
+    {
+        $this->removeAttribute('disabled');
     }
 
     /**
@@ -376,9 +328,11 @@ class AbstractForm extends AbstractHtml
 
     /**
      * Returns the visual size of control
+     *
      * @return string
      */
-    public function getControlSize(): string {
+    public function getControlSize(): string
+    {
         return $this->control_size ?? '';
     }
 }
