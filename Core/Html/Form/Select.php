@@ -9,7 +9,7 @@ use Core\Html\Form\Traits\ValueTrait;
  * Select.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2015
+ * @copyright 2016
  * @license MIT
  */
 class Select extends AbstractForm
@@ -66,11 +66,11 @@ class Select extends AbstractForm
         /* @var $option \Core\Html\Form\Option */
         $option = $this->factory->create('Form\Option');
 
-        if (!empty($value)) {
+        if (isset($value)) {
             $option->setValue($value);
         }
 
-        if (!empty($inner)) {
+        if (isset($inner)) {
             $option->setInner($inner);
         }
 
@@ -87,10 +87,12 @@ class Select extends AbstractForm
      * Add an html option object to the optionlist
      *
      * @param Option $option
+     * @param string $optgroup
+     *            Related optgroup
      *
      * @return Select
      */
-    public function addOption(Option $option, $optgroup = ''): Select
+    public function addOption(Option $option, string $optgroup = ''): Select
     {
         if (empty($optgroup)) {
             $this->options[] = $option;
