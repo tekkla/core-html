@@ -11,7 +11,7 @@ use Core\Html\Form\Traits\IsMultipleTrait;
  * Input.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Input extends AbstractForm
@@ -27,8 +27,16 @@ class Input extends AbstractForm
     // default: text
     protected $type = 'text';
 
+    /**
+     *
+     * @var string
+     */
     protected $element = 'input';
 
+    /**
+     *
+     * @var array
+     */
     protected $data = [
         'control' => 'input'
     ];
@@ -42,7 +50,7 @@ class Input extends AbstractForm
      *
      * @return Input
      */
-    public function setType($type): Input
+    public function setType(string $type): Input
     {
         $types = [
             'button',
@@ -69,15 +77,15 @@ class Input extends AbstractForm
             'url',
             'week '
         ];
-
-        if (!in_array($type, $types)) {
+        
+        if (! in_array($type, $types)) {
             Throw new FormException('Your type "' . $type . '" is no valid input control type. Allowed are ' . implode(', ', $types));
         }
-
+        
         $this->type = $type;
         $this->attribute['type'] = $type;
         $this->data['control'] = $type == 'hidden' ? 'hidden' : 'input';
-
+        
         return $this;
     }
 
@@ -96,25 +104,30 @@ class Input extends AbstractForm
      *
      * @param int $size
      *
-     * @throws InvalidArgumentException
+     * @throws FormException
      *
      * @return Input
      */
-    public function setSize($size): Input
+    public function setSize(int $size): Input
     {
         if (empty((int) $size)) {
             Throw new FormException('A html form inputs size needs to be an integer.');
         }
-
+        
         $this->attribute['size'] = $size;
-
+        
         return $this;
     }
 
+    /**
+     *
+     * {@inheritdoc}
+     * @see \Core\Html\AbstractHtml::build()
+     */
     public function build()
     {
         $this->attribute['type'] = $this->type;
-
+        
         return parent::build();
     }
 }
