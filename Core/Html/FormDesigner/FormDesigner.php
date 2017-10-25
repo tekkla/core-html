@@ -3,7 +3,6 @@ namespace Core\Html\FormDesigner;
 
 use Core\Html\Form\Form;
 use Core\Html\Form\Checkbox;
-use Core\Html\Form\Select;
 use Core\Html\Form\Button;
 use Core\Html\Form\AbstractForm;
 use Core\Html\HtmlBuildableInterface;
