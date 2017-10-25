@@ -7,33 +7,34 @@ use Core\Html\HtmlException;
  * SizeTrait.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 trait SizeTrait
 {
+
     /**
-     * Sets size attribute.
+     * Sets size attribute
      *
-     * @param integer $size
+     * @param int $size
      *
-     * @throws InvalidArgumentException
+     * @throws HtmlException
      */
-    public function setSize($size)
+    public function setSize(int $size)
     {
-        if (empty((int) $size)) {
+        if (empty($size)) {
             Throw new HtmlException('Html size attribute needs to be an integer.');
         }
-
+        
         $this->attribute['size'] = $size;
-
+        
         return $this;
     }
 
     /**
      * Returns size attribute value when existing.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getSize()
     {

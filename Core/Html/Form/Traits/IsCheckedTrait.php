@@ -1,11 +1,13 @@
 <?php
 namespace Core\Html\Form\Traits;
 
+use Core\Html\Form\AbstractForm;
+
 /**
  * IsCheckedTrait.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2015
+ * @copyright 2015-2017
  * @license MIT
  */
 trait IsCheckedTrait
@@ -14,33 +16,33 @@ trait IsCheckedTrait
     /**
      * Sets checked attribute.
      *
-     * @return boolena|\Core\Html\Form\Input
+     * @return AbstractForm
      */
-    public function isChecked()
+    public function isChecked(): AbstractForm
     {
         $this->attribute['checked'] = false;
-
+        
         return $this;
     }
 
     /**
      * Removes a possible set checked attribute.
      *
-     * @return boolena|\Core\Html\Form\Input
+     * @return AbstractForm
      */
-    public function notChecked()
+    public function notChecked(): AbstractForm
     {
         $this->removeAttribute('checked');
-
+        
         return $this;
     }
 
     /**
      * Returns current checked attribute state
      *
-     * @return boolean
+     * @return bool
      */
-    public function getChecked()
+    public function getChecked(): bool
     {
         return $this->checkAttribute('checked');
     }
