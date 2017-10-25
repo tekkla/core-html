@@ -7,8 +7,10 @@ use Core\Html\AbstractHtml;
  * AbstractForm.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
+ * 
+ * @todo Move the bootstrap and datepicker dependencies into a seperate control!
  */
 class AbstractForm extends AbstractHtml
 {
@@ -93,7 +95,7 @@ class AbstractForm extends AbstractHtml
     /**
      * Returns the inner value of label or false if label is not set.
      *
-     * @return Ambigous <boolean, strin
+     * @return bool|string
      */
     public function getLabel()
     {
@@ -152,7 +154,7 @@ class AbstractForm extends AbstractHtml
     /**
      * Set a description which will be used as a help block
      *
-     * @param sting $text
+     * @param string $text
      */
     public function setDescription(string $text)
     {
