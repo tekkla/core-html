@@ -7,13 +7,13 @@ use Core\Html\Form\Input;
  * DateTimePicker.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
- *
+ *         
  * @uses https://eonasdan.github.io/bootstrap-datetimepicker/
  * @uses http://momentjs.com/
- *
- * This control needs the js libs above. Make sure to include them.
+ *      
+ *       This control needs the js libs above. Make sure to include them.
  */
 class DateTimePicker extends Input
 {
@@ -161,24 +161,25 @@ class DateTimePicker extends Input
      *
      * @return string
      */
-    public function getDefaultDate()
+    public function getDefaultDate(): string
     {
         return $this->option_default_date;
     }
 
     /**
-     * Sets the default date.
+     * Sets the default date
+     *
      * Can be timestamp or DateTime object or string
      *
-     * @param integer|DateTime|string $date
+     * @param string $date
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setDefaultDate($date)
+    public function setDefaultDate(string $date): DateTimePicker
     {
         $this->option_default_date = $date;
         $this->set_options['default_date'] = 'defaultDate';
-
+        
         return $this;
     }
 
@@ -187,7 +188,7 @@ class DateTimePicker extends Input
      *
      * @return array
      */
-    public function getDisabledDates()
+    public function getDisabledDates(): array
     {
         return $this->option_disabled_dates;
     }
@@ -200,15 +201,15 @@ class DateTimePicker extends Input
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setDisabledDates($dates)
+    public function setDisabledDates($dates): DateTimePicker
     {
-        if (!is_array($dates)) {
+        if (! is_array($dates)) {
             $dates = (array) $dates;
         }
-
+        
         $this->option_disabled_dates = $dates;
         $this->set_options['disabled_dates'] = 'disabledDates';
-
+        
         return $this;
     }
 
@@ -217,7 +218,7 @@ class DateTimePicker extends Input
      *
      * @return array
      */
-    public function getEnabledDates()
+    public function getEnabledDates(): array
     {
         return $this->option_enabled_dates;
     }
@@ -230,15 +231,15 @@ class DateTimePicker extends Input
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setEnabledDates($dates)
+    public function setEnabledDates($dates): DateTimePicker
     {
-        if (!is_array($dates)) {
+        if (! is_array($dates)) {
             $dates = (array) $dates;
         }
-
+        
         $this->option_enabled_dates = $dates;
         $this->set_options['enablede_dates'] = 'enabledDates';
-
+        
         return $this;
     }
 
@@ -247,45 +248,42 @@ class DateTimePicker extends Input
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
+     * @param bool $bool
      *
-     * @return boolean, @return \Core\Html\Controls\DateTimePicker
+     * @return boolean|\Core\Html\Controls\DateTimePicker
      */
-    public function showToday($bool = null)
+    public function showToday(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_show_today = is_bool($bool) ? $bool : false;
             $this->set_options['show_today'] = 'showToday';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_show_today;
         }
     }
 
     /**
-     * Set flag to use or not use the current button.
+     * Set flag to use or not use the current button
+     *
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
+     * @param bool $bool
      *
-     * @return boolean, @return \Core\Html\Controls\DateTimePicker
+     * @return boolean|\Core\Html\Controls\DateTimePicker
      */
-    public function useCurrent($bool = null)
+    public function useCurrent(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_use_current = is_bool($bool) ? $bool : false;
             $this->set_options['use_current'] = 'useCurrent';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_show_today;
         }
     }
@@ -293,9 +291,9 @@ class DateTimePicker extends Input
     /**
      * Returns set format.
      *
-     * @return the $format
+     * @return string
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }
@@ -307,35 +305,35 @@ class DateTimePicker extends Input
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setFormat($format)
+    public function setFormat(string $format): DateTimePicker
     {
         $this->format = $format;
-
+        
         return $this;
     }
 
     /**
      * Returns set min date.
      *
-     * @return the $start_date
+     * @return string
      */
-    public function getMinDate()
+    public function getMinDate(): string
     {
         return $this->option_min_date;
     }
 
     /**
-     * Sets min date.
+     * Sets min date
      *
      * @param string $start_date
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setMinDate($start_date)
+    public function setMinDate(string $start_date): DateTimePicker
     {
         $this->option_min_date = $start_date;
         $this->set_options['min_date'] = 'minDate';
-
+        
         return $this;
     }
 
@@ -344,7 +342,7 @@ class DateTimePicker extends Input
      *
      * @return string
      */
-    public function getMaxDate()
+    public function getMaxDate(): string
     {
         return $this->option_max_date;
     }
@@ -356,20 +354,20 @@ class DateTimePicker extends Input
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setMaxDate($max_date)
+    public function setMaxDate(string $max_date): DateTimePicker
     {
         $this->option_max_date = $max_date;
         $this->set_options['max_date'] = 'maxDate';
-
+        
         return $this;
     }
 
     /**
-     * Returns set minute stepping option.
+     * Returns set minute stepping option
      *
-     * @return the $minute_step
+     * @return int
      */
-    public function getMinuteStepping()
+    public function getMinuteStepping(): int
     {
         return $this->option_minute_stepping;
     }
@@ -377,120 +375,117 @@ class DateTimePicker extends Input
     /**
      * Sets minute stepping.
      *
-     * @param number $minute_step
+     * @param int $minute_step
      *
-     * @throws InvalidArgumentException
+     * @throws ControlException
      *
      * @return \Core\Html\Controls\DateTimePicker
      */
-    public function setMinuteStepping($minute_step)
+    public function setMinuteStepping(int $minute_step): DateTimePicker
     {
         $minute_step = (int) $minute_step;
-
+        
         if (empty($minute_step)) {
             Throw new ControlException('Datepicker minute step has to be of type integer');
         }
-
+        
         if ($minute_step < 1 || $minute_step > 59) {
             Throw new ControlException('Datepicker minute step has to be between 1 and 59.');
         }
-
+        
         $this->option_minute_stepping = $minute_step;
         $this->set_options['minute_stepping'] = 'minuteStepping';
-
+        
         return $this;
     }
 
     /**
-     * Set flag for using datepicker.
+     * Set flag for using datepicker
+     *
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
-     * @return boolean, \Core\Html\Controls\DateTimePicker
+     * @param bool $bool
+     *
+     * @return bool|\Core\Html\Controls\DateTimePicker
      */
-    public function usePickDate($bool = null)
+    public function usePickDate(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_pick_date = (bool) $bool;
             $this->set_options['pick_date'] = 'pickDate';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_pick_date;
         }
     }
 
     /**
-     * Set flag for using timepicker.
+     * Set flag for using timepicker
+     *
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
+     * @param bool $bool
      *
-     * @return boolean, \Core\Html\Controls\DateTimePicker
+     * @return bool|\Core\Html\Controls\DateTimePicker
      */
-    public function usePickTime($bool = null)
+    public function usePickTime(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_pick_time = (bool) $bool;
             $this->set_options['pick_time'] = 'pickTime';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_pick_time;
         }
     }
 
     /**
-     * Set flag to use or not use minutes in timepicker.
+     * Set flag to use or not use minutes in timepicker
+     *
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
-     * @return boolean, \Core\Html\Controls\DateTimePicker
+     * @param bool $bool
+     * @return bool|\Core\Html\Controls\DateTimePicker
      */
-    public function useMinutes($bool = null)
+    public function useMinutes(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_use_minutes = (bool) $bool;
             $this->set_options['use_minutes'] = 'useMinutes';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_use_minutes;
         }
     }
 
     /**
-     * Set flag to use or not use saeconds int timepicker.
+     * Set flag to use or not use seconds int timepicker.
+     *
      * This option is "true" by default.
      * Calling this method without parameter returns the currently set value.
      *
-     * @param boolean $bool
+     * @param bool $bool
      *
-     * @return boolean, \Core\Html\Controls\DateTimePicker
+     * @return bool|\Core\Html\Controls\DateTimePicker
      */
-    public function useSeconds($bool = null)
+    public function useSeconds(bool $bool = null)
     {
         if (isset($bool)) {
-
+            
             $this->option_use_seconds = (bool) $bool;
             $this->set_options['use_seconds'] = 'useSeconds';
-
+            
             return $this;
-        }
-        else {
-
+        } else {
             return $this->option_use_seconds;
         }
     }
@@ -506,7 +501,7 @@ class DateTimePicker extends Input
     {
         $this->option_locale = $locale;
         $this->set_options['locale'] = 'locale';
-
+        
         return $this;
     }
 
@@ -515,56 +510,55 @@ class DateTimePicker extends Input
      *
      * @see \Core\Html\Form\Input::build()
      *
-     * @throws UnexpectedValueException
+     * @throws ControlException
      */
     public function build()
     {
         // Prepare options object
         $options = new \stdClass();
-
+        
         // Set options which are set active
         foreach ($this->set_options as $option) {
-
+            
             switch ($option) {
-
+                
                 // Check date
                 case 'option_disabled_days':
                 case 'option_enabled_dates':
-
+                    
                     $options->{$option} = [];
-
+                    
                     foreach ($this->{$option} as $date) {
-
-                        if (!is_int($date) || !$date instanceof \DateTime || !is_string($date)) {
+                        
+                        if (! is_int($date) || ! $date instanceof \DateTime || ! is_string($date)) {
                             Throw new ControlException('Datepicker controls ' . $option . ' date must by of type integer (timestamp), string or DateTime object.', 1000);
                         }
-
+                        
                         if (is_string($date)) {
                             $date = strtotime($date);
                         }
-
+                        
                         if ($date instanceof \DateTime) {
                             $date = $date->getTimestamp();
                         }
-
+                        
                         $options->{$option}[] = date('Y-m-d', $date);
                     }
-
+                    
                     break;
-
+                
                 default:
-
+                    
                     $options->{$option} = $this->{'option_' . $option};
                     break;
             }
         }
-
+        
         $options->format = $this->format;
-
+        
         // Add options as json encoded data attribute
         $this->data['datepicker-options'] = json_encode($options);
-
+        
         return parent::build();
     }
 }
-
