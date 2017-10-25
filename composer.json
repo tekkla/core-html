@@ -30,5 +30,6 @@
 			"type" : "composer",
 			"url" : "https://packagist.org/"
 		}
-	]
+	],
+	"minimum-stability" : "dev"
 }
