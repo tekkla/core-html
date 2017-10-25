@@ -1,10 +1,8 @@
 <?php
 namespace Core\Html\Controls\Editbox;
 
-use Core\Html\Form\Form;
 use Core\Html\FormDesigner\FormDesigner;
 use Core\Html\Bootstrap\Panel\Panel;
-use Core\Html\Elements\A;
 use Core\Html\HtmlBuildableInterface;
 use Core\Html\Controls\ControlException;
 
@@ -12,7 +10,7 @@ use Core\Html\Controls\ControlException;
  * Editbox.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Editbox implements HtmlBuildableInterface
@@ -33,8 +31,9 @@ class Editbox implements HtmlBuildableInterface
     private $description = '';
 
     /**
-     *
-     * @var unknown
+     * Form id
+     * 
+     * @var string
      */
     private $form;
 

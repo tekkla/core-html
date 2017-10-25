@@ -7,7 +7,7 @@ use Core\Html\HtmlBuildableInterface;
  * Action.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Action
@@ -56,91 +56,103 @@ class Action
     private $icon = '';
 
     /**
+     * Returns set action text
      *
-     * @return the $text
+     * @return string
      */
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
 
     /**
+     * Sets action text
      *
      * @param string $text
      */
-    public function setText($text)
+    public function setText(string $text)
     {
         $this->text = $text;
     }
 
     /**
+     * Returns set action href
      *
-     * @return the $href
+     * @return string
      */
-    public function getHref()
+    public function getHref(): string
     {
         return $this->href;
     }
 
     /**
+     * Sets action href
      *
      * @param string $href
      */
-    public function setHref($href)
+    public function setHref(string $href)
     {
         $this->href = $href;
     }
 
     /**
+     * Returns actios ajax flag
      *
-     * @return the $ajax
+     * @return bool
      */
-    public function getAjax()
+    public function getAjax(): bool
     {
         return $this->ajax;
     }
 
     /**
+     * Set action ajax flag
      *
-     * @param boolean $ajax
+     * @param bool $ajax
      */
-    public function setAjax($ajax)
+    public function setAjax(bool $ajax)
     {
-        $this->ajax = (bool) $ajax;
+        $this->ajax = $ajax;
     }
 
     /**
+     * Returns set confirm text
      *
-     * @return the $confirm
+     * @return string
      */
-    public function getConfirm()
+    public function getConfirm(): string
     {
         return $this->confirm;
     }
 
     /**
+     * Sets confirm text
      *
      * @param string $confirm
      */
-    public function setConfirm($confirm)
+    public function setConfirm(string $confirm)
     {
         $this->confirm = $confirm;
     }
 
     /**
+     * Returns set action type
      *
-     * @return the $type
+     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
     /**
+     * Sets action type
+     *
+     * Allowed types are: 'save', 'delete', 'cancel', 'context'
      *
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $allowed = [
             'save',
@@ -148,15 +160,16 @@ class Action
             'cancel',
             'context'
         ];
-
+        
         if (! in_array($type, $allowed)) {
             Throw new EditboxException(sprintf('Type "%s" is not a allowed editbox actiontype', $type));
         }
-
+        
         $this->type = $type;
     }
 
     /**
+     * Returns set icon instance
      *
      * @return HtmlBuildableInterface
      */
@@ -166,8 +179,9 @@ class Action
     }
 
     /**
-     *
-     * @param string $icon
+     * Sets an icon instance
+     * 
+     * @param HtmlBuildableInterface $icon
      */
     public function setIcon(HtmlBuildableInterface $icon)
     {
