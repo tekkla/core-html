@@ -8,7 +8,7 @@ use Core\Html\Elements\A;
  * UiButton.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class UiButton extends A
@@ -60,10 +60,10 @@ class UiButton extends A
      *
      * @return UiButton
      */
-    public function useAjax()
+    public function useAjax(): UiButton
     {
         $this->mode = 'ajax';
-
+        
         return $this;
     }
 
@@ -72,10 +72,10 @@ class UiButton extends A
      *
      * @return UiButton
      */
-    public function useFull()
+    public function useFull(): UiButton
     {
         $this->mode = 'full';
-
+        
         return $this;
     }
 
@@ -84,23 +84,23 @@ class UiButton extends A
      *
      * @param string $mode
      *
-     * @throws InvalidArgumentException
+     * @throws ControlException
      *
      * @return UiButton
      */
-    public function setMode($mode)
+    public function setMode(string $mode): UiButton
     {
         $modelist = [
             'ajax',
             'full'
         ];
-
-        if (!in_array($mode, $modelist)) {
+        
+        if (! in_array($mode, $modelist)) {
             Throw new ControlException('Wrong mode for UiButton.', 1000);
         }
-
+        
         $this->mode = $mode;
-
+        
         return $this;
     }
 
@@ -109,7 +109,7 @@ class UiButton extends A
      *
      * @return string
      */
-    public function getMode()
+    public function getMode(): string
     {
         return $this->mode;
     }
@@ -127,13 +127,13 @@ class UiButton extends A
             'button',
             'imgbutton'
         ];
-
-        if (!in_array($type, $typelist)) {
+        
+        if (! in_array($type, $typelist)) {
             Throw new ControlException('Wrong type for UiButton.', 1000);
         }
-
+        
         $this->type = $type;
-
+        
         return $this;
     }
 
@@ -145,11 +145,11 @@ class UiButton extends A
      *
      * @return \Core\Html\controls\UiButton
      */
-    public function setIcon($icon)
+    public function setIcon(string $icon): UiButton
     {
         $this->icon = $this->factory->create('Fontawesome\Icon');
         $this->icon->setIcon($icon);
-
+        
         return $this;
     }
 
@@ -159,13 +159,13 @@ class UiButton extends A
      *
      * @param $val string
      *            Inner HTML of link
-     *
+     *            
      * @return \Core\Html\controls\UiButton
      */
-    function setText($val)
+    function setText(string $val): UiButton
     {
         $this->text = $val;
-
+        
         return $this;
     }
 
@@ -178,10 +178,10 @@ class UiButton extends A
      *
      * @return \Core\Html\Controls\UiButton
      */
-    public function setForm($form_name)
+    public function setForm(string $form_name): UiButton
     {
         $this->data['form'] = $form_name;
-
+        
         return $this;
     }
 
@@ -193,10 +193,10 @@ class UiButton extends A
      *
      * @return \Core\Html\Controls\UiButton
      */
-    public function setConfirm($msg)
+    public function setConfirm(string $msg): UiButton
     {
         $this->data['confirm'] = $msg;
-
+        
         return $this;
     }
 
@@ -205,13 +205,13 @@ class UiButton extends A
      *
      * @param string $modal
      *            Name of modal window frame
-     *
+     *            
      * @return \Core\Html\Controls\UiButton
      */
-    public function setModal($modal = '#modal')
+    public function setModal(string $modal = '#modal'): UiButton
     {
         $this->data['modal'] = $modal;
-
+        
         return $this;
     }
 
@@ -222,19 +222,15 @@ class UiButton extends A
      *
      * @return \Core\Html\Controls\UiButton
      */
-    public function setUrl($url)
+    public function setUrl(string $url): UiButton
     {
         $this->setHref($url);
-
+        
         return $this;
     }
 
     /**
      * Builds and returns button html code
-     *
-     * @param string $wrapper
-     *
-     * @throws Error
      *
      * @return string
      */
@@ -243,41 +239,41 @@ class UiButton extends A
         if ($this->mode == 'ajax') {
             $this->data['ajax'] = 'link';
         }
-
+        
         // Set text and set icon means we have a button of type imagebutton
         if ($this->text && $this->icon) {
             $this->type = 'imgbutton';
         }
-
+        
         // icon/image
         if ($this->type == 'icon') {
             $this->css['icon'] = 'icon';
             $this->icon->noStack();
             $this->inner = $this->icon->build();
         }
-
+        
         // textbutton
         if ($this->type == 'button') {
             $this->inner = '<span class="button-text">' . $this->text . '</span>';
         }
-
+        
         // simple link
         if ($this->type == 'link') {
             $this->css['link'] = 'link';
             $this->inner = '<span class="link-text">' . $this->text . '</span>';
         }
-
+        
         // imgbutton
         if ($this->type == 'imgbutton') {
             $this->icon->noStack();
             $this->inner = $this->icon->build() . ' ' . $this->text;
         }
-
+        
         // Do we need to set the default button css code for a non link?
         if ($this->type != 'link') {
-
+            
             $this->css['btn'] = 'btn';
-
+            
             $check = [
                 'btn-primary',
                 'btn-success',
@@ -285,12 +281,12 @@ class UiButton extends A
                 'btn-info',
                 'btn-default'
             ];
-
+            
             if ($this->checkCss($check) == false) {
                 $this->addCss('btn-default');
             }
         }
-
+        
         return parent::build();
     }
 }
