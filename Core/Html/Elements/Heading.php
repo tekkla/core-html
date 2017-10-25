@@ -32,7 +32,7 @@ class Heading extends AbstractHtml
      *
      * @param integer
      *
-     * @throws InvalidArgumentException
+     * @throws ElementException
      *
      * @return Heading
      */
