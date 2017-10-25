@@ -7,7 +7,7 @@ use Core\Html\AbstractHtml;
  * Source.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Source extends AbstractHtml
@@ -62,7 +62,7 @@ class Source extends AbstractHtml
      *
      * @see \Core\Html\AbstractHtml::build()
      *
-     * @throws UnexpectedValueException
+     * @throws ElementException
      */
     public function build()
     {

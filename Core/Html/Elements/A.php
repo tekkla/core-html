@@ -7,7 +7,7 @@ use Core\Html\AbstractHtml;
  * A.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2015
+ * @copyright 2015-2017
  * @license MIT
  */
 class A extends AbstractHtml
@@ -78,7 +78,7 @@ class A extends AbstractHtml
      *
      * @param string $rel
      *
-     * @throws InvalidArgumentException
+     * @throws ElementException
      *
      * @return A
      */
@@ -149,9 +149,10 @@ class A extends AbstractHtml
     }
 
     /**
-     * Build method with href and set alt check
-     *
-     * @see \Core\Abstracts\AbstractHtml::build()
+     * * Build method with href and set alt check
+     * 
+     * {@inheritDoc}
+     * @see \Core\Html\AbstractHtml::build()
      */
     public function build()
     {

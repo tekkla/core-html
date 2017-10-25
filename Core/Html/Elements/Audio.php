@@ -7,7 +7,7 @@ use Core\Html\AbstractHtml;
  * Audio.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Audio extends AbstractHtml
@@ -96,7 +96,7 @@ class Audio extends AbstractHtml
      *
      * @param string $preload
      *
-     * @throws InvalidArgumentException
+     * @throws ElementException
      *
      * @return Audio
      */
