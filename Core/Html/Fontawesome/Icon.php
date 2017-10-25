@@ -7,7 +7,7 @@ use Core\Html\AbstractHtml;
  * Icon.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Icon extends AbstractHtml
@@ -102,7 +102,7 @@ class Icon extends AbstractHtml
     public function setIcon(string $icon): Icon
     {
         $this->icon = $icon;
-
+        
         return $this;
     }
 
@@ -125,13 +125,13 @@ class Icon extends AbstractHtml
             '3x',
             '4x'
         ];
-
-        if (!in_array($size, $sizes)) {
+        
+        if (! in_array($size, $sizes)) {
             Throw new IconException('Wrong size set.');
         }
-
+        
         $this->size = $size;
-
+        
         return $this;
     }
 
@@ -143,7 +143,7 @@ class Icon extends AbstractHtml
     public function useFixedWidth(): Icon
     {
         $this->css[] = 'fa-fixed-width';
-
+        
         return $this;
     }
 
@@ -155,7 +155,7 @@ class Icon extends AbstractHtml
     public function useBorder(): Icon
     {
         $this->border = true;
-
+        
         return $this;
     }
 
@@ -167,7 +167,7 @@ class Icon extends AbstractHtml
     public function isMuted(): Icon
     {
         $this->muted = true;
-
+        
         return $this;
     }
 
@@ -179,7 +179,7 @@ class Icon extends AbstractHtml
     public function pullLeft(): Icon
     {
         $this->pull = 'left';
-
+        
         return $this;
     }
 
@@ -191,7 +191,7 @@ class Icon extends AbstractHtml
     public function pullRight(): Icon
     {
         $this->pull = 'right';
-
+        
         return $this;
     }
 
@@ -214,18 +214,17 @@ class Icon extends AbstractHtml
             180,
             270
         ];
-
-        if (!in_array($rotation, $rotas)) {
+        
+        if (! in_array($rotation, $rotas)) {
             Throw new IconException('Wrong rotation degree set.');
         }
-
+        
         if ($rotation == 0) {
             unset($this->rotation);
-        }
-        else {
+        } else {
             $this->rotation = $rotation;
         }
-
+        
         return $this;
     }
 
@@ -238,7 +237,7 @@ class Icon extends AbstractHtml
     {
         $this->flip = 'horizontal';
         unset($this->rotation);
-
+        
         return $this;
     }
 
@@ -251,7 +250,7 @@ class Icon extends AbstractHtml
     {
         $this->flip = 'vertical';
         unset($this->rotation);
-
+        
         return $this;
     }
 
@@ -263,7 +262,7 @@ class Icon extends AbstractHtml
     public function isSpin(): Icon
     {
         $this->spin = true;
-
+        
         return $this;
     }
 
@@ -279,7 +278,7 @@ class Icon extends AbstractHtml
     public function stackOn(string $icon): Icon
     {
         $this->on = $icon;
-
+        
         return $this;
     }
 
@@ -291,25 +290,25 @@ class Icon extends AbstractHtml
     public function noStack(): Icon
     {
         unset($this->on);
-
+        
         return $this;
     }
 
     /**
-     * Icon creation
      *
-     * @see \Core\Html::build()
+     * {@inheritdoc}
+     * @see \Core\Html\AbstractHtml::build()
      */
     public function build()
     {
         // first step is to set the icon name itself
         $this->css[] = 'fa-' . $this->icon;
-
+        
         if (isset($this->on)) {
             $stack = $this->factory->create('Elements\Span');
             $stack->addCss('fa fa-stack');
             $this->addCss('fa-stack-1x');
-
+            
             // Create the on icon
             $on = $this->factory->create('Fontawesome\Icon');
             $on->useIcon($this->on);
@@ -319,87 +318,79 @@ class Icon extends AbstractHtml
             ]);
             $icon_1 = $on->build();
         }
-
+        
         // size set for icon?
         if (isset($this->size)) {
-
+            
             if (isset($stack)) {
                 $stack->addCss('fa-' . $this->size);
-            }
-            else {
+            } else {
                 $this->addCss('fa-' . $this->size);
             }
         }
-
+        
         // any floating wanted?
         if (isset($this->pull)) {
-
+            
             if (isset($stack)) {
                 $stack->addCss('fa-pull-' . $this->pull);
-            }
-            else {
+            } else {
                 $this->addCss('fa-pull-' . $this->pull);
             }
         }
-
+        
         // draw border?
-        if ($this->border && !isset($stack)) {
+        if ($this->border && ! isset($stack)) {
             $this->css[] = 'fa-border';
         }
-
+        
         // is muted?
         if ($this->muted) {
-
+            
             if (isset($stack)) {
                 $stack->addCss('fa-muted');
-            }
-            else {
+            } else {
                 $this->css[] = 'fa-muted';
             }
         }
-
+        
         // flip icon?
         if (isset($this->flip)) {
-
+            
             if (isset($stack)) {
                 $stack->addCss('fa-flip-' . $this->flip);
-            }
-            else {
+            } else {
                 $this->css[] = 'fa-flip-' . $this->flip;
             }
         }
-
+        
         // rotate icon?
         if (isset($this->rotation)) {
             if (isset($stack)) {
                 $stack->addCss('fa-rotate-' . $this->rotation);
-            }
-            else {
+            } else {
                 $this->css[] = 'fa-rotate-' . $this->rotation;
             }
         }
-
+        
         // spin icon?
         if ($this->spin) {
             if (isset($stack)) {
                 $stack->addCss('fa-spin');
-            }
-            else {
+            } else {
                 $this->css[] = 'fa-spin';
             }
         }
-
+        
         $icon_2 = parent::build();
-
+        
         if (isset($stack)) {
             $stack->setInner($icon_1 . PHP_EOL . $icon_2);
             $html = $stack->build();
-        }
-        else {
+        } else {
             $html = $icon_2;
         }
-
+        
         return $html;
     }
 }
-
