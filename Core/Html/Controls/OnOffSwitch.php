@@ -7,7 +7,7 @@ use Core\Html\Form\Select;
  * OnOffSwitch.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class OnOffSwitch extends Select
@@ -53,24 +53,24 @@ class OnOffSwitch extends Select
 
     private function createSwitches()
     {
-        if (!empty($this->switch)) {
+        if (! empty($this->switch)) {
             return;
         }
-
+        
         // Add off option
         $option = $this->factory->create('Form\Option');
-
+        
         $option->setValue(0);
         $option->setInner($this->strings['off']);
-
+        
         $this->switch['off'] = $option;
-
+        
         // Add on option
         $option = $this->factory->create('Form\Option');
-
+        
         $option->setValue(1);
         $option->setInner($this->strings['on']);
-
+        
         $this->switch['on'] = $option;
     }
 
@@ -93,9 +93,10 @@ class OnOffSwitch extends Select
     /**
      * Set switch to a specific state
      *
-     * @param number $state
-     *
-     * @throws InvalidArgumentException
+     * @param mixed $state
+     *            Allowed states are : 0, 1, false, true, 'on', 'off', 'yes', 'no'
+     *            
+     * @throws ControlException
      *
      * @return OnOffSwitch
      */
@@ -111,11 +112,11 @@ class OnOffSwitch extends Select
             'yes',
             'no'
         ];
-
-        if (!in_array($state, $states)) {
+        
+        if (! in_array($state, $states)) {
             Throw new ControlException('Wrong state for on/off switch.');
         }
-
+        
         switch ($state) {
             case 0:
             case false:
@@ -149,23 +150,23 @@ class OnOffSwitch extends Select
     public function build()
     {
         $this->createSwitches();
-
+        
         /* @var $option \Core\Html\Form\Option */
         foreach ($this->switch as $option) {
-
+            
             $value = $option->getValue();
-
-            if (!$value) {
+            
+            if (! $value) {
                 $value = $option->getInner();
             }
-
+            
             if ($this->state == $value) {
                 $option->isSelected();
             }
-
+            
             $this->addOption($option);
         }
-
+        
         return parent::build();
     }
 }
