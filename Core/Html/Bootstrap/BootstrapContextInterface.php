@@ -10,6 +10,7 @@ namespace Core\Html\Bootstrap;
  */
 interface BootstrapContextInterface
 {
+
     const PRIMARY = 'primary';
 
     const SUCCESS = 'success';
@@ -23,14 +24,15 @@ interface BootstrapContextInterface
     /**
      * Sets Bootstrap color context
      *
-     * @param string $context Bootstrap contextual color like primary, success, info, warning or danger
+     * @param string $context
+     *            Bootstrap contextual color like primary, success, info, warning or danger
      */
-    public function setContext($context);
+    public function setContext(string $context);
 
     /**
      * Returns set Bootstrab contextual color
      *
      * @return string
      */
-    public function getContext();
+    public function getContext(): string;
 }

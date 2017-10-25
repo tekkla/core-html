@@ -64,7 +64,7 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
      *
      * @return boolean
      */
-    public function getDismissable()
+    public function getDismissable(): bool
     {
         return $this->dismissable;
     }
@@ -81,11 +81,11 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\Bootstrap\BootstrapContextInterface::setContext()
      */
-    public function setContext($context)
+    public function setContext(string $context)
     {
         $allowed = [
             self::SUCCESS,
@@ -94,21 +94,21 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
             self::WARNING,
             self::DANGER
         ];
-
+        
         if (! in_array($context, $allowed)) {
             Throw new HtmlException('Given "%s" is no valid Bootstrap::Alert type. Allowed types are: %s', $context, implode(', ', $allowed));
         }
-
+        
         $this->context = $context;
     }
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\Bootstrap\BootstrapContextInterface::getContext()
      */
-    public function getContext()
+    public function getContext(): string
     {
         return $this->context;
     }
@@ -118,7 +118,7 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
      *
      * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }
@@ -128,14 +128,14 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
      *
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\HtmlBuildableInterface::build()
      */
@@ -144,20 +144,20 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
         if (! $this->html instanceof AbstractHtml) {
             Throw new HtmlException('Bootstrap Alert object need a html object that is an instance of HtmlAbstact');
         }
-
+        
         $this->html->addCss([
             'alert',
             'alert-' . $this->context
         ]);
-
+        
         if ($this->dismissable) {
             $this->html->addCss('alert-dismissable');
             $this->html->setInner('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
         }
-
+        
         $this->html->addInner($this->content);
         $this->html->setRole('alert');
-
+        
         return $this->html->build();
     }
 }

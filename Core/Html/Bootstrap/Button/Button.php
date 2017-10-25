@@ -13,6 +13,7 @@ use Core\Html\HtmlBuildableInterface;
  */
 class Button extends FormButton
 {
+
     /**
      * Name of icon to use
      *
@@ -60,7 +61,7 @@ class Button extends FormButton
     public function useIcon(HtmlBuildableInterface $icon): Button
     {
         $this->icon = $icon;
-
+        
         return $this;
     }
 
@@ -72,7 +73,7 @@ class Button extends FormButton
     public function isDefault(): Button
     {
         $this->option = 'default';
-
+        
         return $this;
     }
 
@@ -84,7 +85,7 @@ class Button extends FormButton
     public function isPrimary(): Button
     {
         $this->option = 'primary';
-
+        
         return $this;
     }
 
@@ -96,7 +97,7 @@ class Button extends FormButton
     public function isDanger(): Button
     {
         $this->option = 'danger';
-
+        
         return $this;
     }
 
@@ -108,7 +109,7 @@ class Button extends FormButton
     public function isInfo(): Button
     {
         $this->option = 'info';
-
+        
         return $this;
     }
 
@@ -120,7 +121,7 @@ class Button extends FormButton
     public function isWarning(): Button
     {
         $this->option = 'warning';
-
+        
         return $this;
     }
 
@@ -132,7 +133,7 @@ class Button extends FormButton
     public function isSuccess(): Button
     {
         $this->option = 'success';
-
+        
         return $this;
     }
 
@@ -144,7 +145,7 @@ class Button extends FormButton
     public function isLink(): Button
     {
         $this->option = 'link';
-
+        
         return $this;
     }
 
@@ -156,7 +157,7 @@ class Button extends FormButton
     public function sizeXs(): Button
     {
         $this->size = 'xs';
-
+        
         return $this;
     }
 
@@ -168,7 +169,7 @@ class Button extends FormButton
     public function sizeSm(): Button
     {
         $this->size = 'sm';
-
+        
         return $this;
     }
 
@@ -180,7 +181,7 @@ class Button extends FormButton
     public function sizeMd(): Button
     {
         $this->size = 'md';
-
+        
         return $this;
     }
 
@@ -192,14 +193,14 @@ class Button extends FormButton
     public function sizeLg(): Button
     {
         $this->size = 'lg';
-
+        
         return $this;
     }
 
     /**
-     * (non-PHPdoc)
      *
-     * @see \Core\Abstracts\AbstractHtml::build()
+     * {@inheritdoc}
+     * @see \Core\Html\Form\Button::build()
      */
     public function build()
     {
@@ -207,15 +208,15 @@ class Button extends FormButton
         if (isset($this->icon)) {
             $this->inner = $this->icon->build() . ' ' . $this->inner;
         }
-
+        
         // Add button type css
         $this->css[] = 'btn-' . $this->option;
-
+        
         // Do we have to add cs for a specific button size?
         if (isset($this->size)) {
             $this->css[] = 'btn-' . $this->size;
         }
-
+        
         return parent::build();
     }
 }

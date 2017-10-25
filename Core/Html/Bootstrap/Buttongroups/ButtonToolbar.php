@@ -3,8 +3,17 @@ namespace Core\Html\Bootstrap\Buttongroups;
 
 use Core\Html\Elements\Div;
 
+/**
+ * ButtonToolbar.php
+ *
+ * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
+ * @copyright 2016
+ * @license MIT
+ */
+
 class ButtonToolbar extends Div
 {
+
     private $groups = [];
 
     protected $css = [
@@ -12,15 +21,15 @@ class ButtonToolbar extends Div
     ];
 
     protected $attributes = [
-        'role' => 'toolbar',
+        'role' => 'toolbar'
     ];
 
     /**
      * Creates a ButtonGroup object, adds it to the groups list and returns a reference to it
      *
-     * @return Core\Html\Bootstrap\Buttongroups\ButtonGroup
+     * @return ButtonGroup
      */
-    public function &createButtongroup()
+    public function &createButtongroup(): ButtonGroup
     {
         return $this->addButtongroup($this->factory->create('Bootstrap\Buttongroups\ButtonGroup'));
     }
@@ -28,22 +37,24 @@ class ButtonToolbar extends Div
     /**
      * Adds a ButtonGroup object to the groups list and returns reference to it.
      *
-     * @return Core\Html\Bootstrap\Buttongroups\ButtonGroup
+     * @param ButtonGroup $buttongroup
+     *
+     * @return ButtonGroup
      */
-    public function &addButtongroup(ButtonGroup $buttongroup) {
-
+    public function &addButtongroup(ButtonGroup $buttongroup): ButtonGroup
+    {
         $uniqeid = uniqid('btntoolbar_btngrp_');
         $this->groups[$uniqeid] = $buttongroup;
-
+        
         return $this->groups[$uniqeid];
     }
 
     public function build()
     {
         foreach ($this->groups as $group) {
-            $this->inner.= $group->build();
+            $this->inner .= $group->build();
         }
-
+        
         return parent::build();
     }
 }

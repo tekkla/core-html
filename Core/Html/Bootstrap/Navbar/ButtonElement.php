@@ -5,11 +5,12 @@ namespace Core\Html\Bootstrap\Navbar;
  * Button navbar element
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
+ * @copyright 2015-2017
  * @license MIT
- * @copyright 2015 by author
  */
 class ButtonElement extends AbstractNavbarElement
 {
+
     /**
      *
      * @var string
@@ -17,10 +18,9 @@ class ButtonElement extends AbstractNavbarElement
     protected $type = 'button';
 
     /**
-     * (non-PHPdoc)
      *
-     * @see \Core\Html\Bootstrap\Navbar\NavbarElementAbstract::build()
-     *
+     * {@inheritdoc}
+     * @see \Core\Html\Bootstrap\Navbar\AbstractNavbarElement::build()
      */
     public function build()
     {}

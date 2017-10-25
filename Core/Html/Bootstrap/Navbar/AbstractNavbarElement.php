@@ -7,8 +7,8 @@ use Core\Html\HtmlException;
  * Abstract NavbarElement
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
+ * @copyright 2015-2017
  * @license MIT
- * @copyright 2015 by author
  */
 abstract class AbstractNavbarElement
 {
@@ -36,15 +36,14 @@ abstract class AbstractNavbarElement
      *
      * @param bool $active
      *
-     * @return \Core\Html\Bootstrap\Navbar\NavbarElementAbstract|boolean
+     * @return AbstractNavbarElement|boolean
      */
-    final public function isActive($active = null)
+    final public function isActive(bool $active = null)
     {
         if (isset($active)) {
             $this->active = (bool) $active;
             return $this;
-        }
-        else {
+        } else {
             return $this->active;
         }
     }
@@ -52,7 +51,7 @@ abstract class AbstractNavbarElement
     /**
      * Returns type of element.
      */
-    final public function getType()
+    final public function getType(): string
     {
         return $this->type;
     }
@@ -61,48 +60,49 @@ abstract class AbstractNavbarElement
      * Sets element alignment to "left" or "right".
      *
      * @param string $align
-     *
+     *            Allowed alignments: 'left', 'right
+     *            
      * @throws HtmlException
      *
-     * @return \Core\Html\Bootstrap\Navbar\NavbarElementAbstract
+     * @return AbstractNavbarElement
      */
-    final public function setAlign($align)
+    final public function setAlign($align): AbstractNavbarElement
     {
         $sides = [
             'left',
             'right'
         ];
-
+        
         if (! in_array($align, $sides)) {
             Throw new HtmlException(sprintf('Your "%s" is not a valid navbar element position. Allowed are %s.', $align, implode(', ', $sides)));
         }
-
+        
         $this->side = $align;
-
+        
         return $this;
     }
 
     /**
      * Sets element alignment to "left".
      *
-     * @return \Core\Html\Bootstrap\Navbar\NavbarElementAbstract
+     * @return AbstractNavbarElement
      */
-    final public function alignLeft()
+    final public function alignLeft(): AbstractNavbarElement
     {
         $this->side = 'left';
-
+        
         return $this;
     }
 
     /**
      * Sets element alignment to "right".
      *
-     * @return \Core\Html\Bootstrap\Navbar\NavbarElementAbstract
+     * @return AbstractNavbarElement
      */
-    final public function alignRight()
+    final public function alignRight(): AbstractNavbarElement
     {
         $this->side = 'right';
-
+        
         return $this;
     }
 

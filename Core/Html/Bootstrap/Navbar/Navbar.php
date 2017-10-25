@@ -8,7 +8,7 @@ use Core\Html\HtmlException;
  * Navbar.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Navbar extends Nav
@@ -60,64 +60,56 @@ class Navbar extends Nav
      *
      * @param string $position
      *            Optional position of navbar which also controls the fixed displaymode. (Default: 'top')
-     *
-     * @return \Core\Html\Bootstrap\Navbar\Navbar|boolean
      */
-    public function setFixed($position = 'top')
+    public function setFixed(string $position = 'top')
     {
         $positions = [
             'top',
             'bottom'
         ];
-
+        
         if (! in_array($position, $positions)) {
             Throw new HtmlException(sprintf('They type "%s" is not a valid navbar elementtype. Allowed are %s.', $position, implode(', ', $positions)));
         }
-
+        
         $this->fixed = $position;
-
-        return $this;
     }
 
     /**
-     * Sets or gets fluid container flag.
+     * Sets or gets fluid container flag
      *
      * @param bool $fluid
-     *
-     * @return \Core\Html\Bootstrap\Navbar\Navbar|boolean
      */
-    public function isFluid($fluid = null)
+    public function isFluid(string $fluid = null): bool
     {
         if (isset($fluid)) {
-            $this->fluid = (bool) $fluid;
-            return $this;
-        } else {
-            return $this->fluid;
+            $this->fluid = $fluid;
         }
+        
+        return $this->fluid;
     }
 
     /**
-     * Sets or gets collapsible flag.
+     * Sets or gets collapsible flag
      *
      * @param bool $collapsible
      *
      * @return \Core\Html\Bootstrap\Navbar\Navbar|boolean
      */
-    public function isCollapsible($collapsible = null)
+    public function isCollapsible(bool $collapsible = null): bool
     {
         if (isset($collapsible)) {
-            $this->collapsible = (bool) $collapsible;
-            return $this;
-        } else {
-            return $this->collapsible;
+            $this->collapsible = $collapsible;
         }
+        
+        return $this->collapsible;
     }
 
     /**
      * Adds a navbarelement to the elements stack.
      * Requesting a no allowed elementtype will cause a HtmlException.
      *
-     * @param NavbarElementAbstract $element
+     * @param AbstractNavbarElement $element
      *
      * @throws HtmlException
      */
@@ -126,7 +118,7 @@ class Navbar extends Nav
         if (! in_array($element->getType(), $this->element_types)) {
             Throw new HtmlException(sprintf('They type "%s" is not a valid navbar elementtype. Allowed are %s.', $element->getType(), implode(', ', $this->element_types)));
         }
-
+        
         $this->elements[] = $element;
     }
 
@@ -138,60 +130,60 @@ class Navbar extends Nav
      *
      * @throws HtmlException
      *
-     * @return \Core\Html\AbstractHtml
+     * @return AbstractNavbarElement
      */
-    public function &createNavbarElement($type)
+    public function &createNavbarElement($type): AbstractNavbarElement
     {
         if (! in_array($type, $this->element_types)) {
             Throw new HtmlException(sprintf('They type "%s" is not a valid navbar elementtype. Allowed are %s.', $type, implode(', ', $this->element_types)));
         }
-
+        
         return $this->elements[] = $this->factory->create('Bootstrap\Navbar\\' . $type . 'Element');
     }
 
     /**
-     * (non-PHPdoc)
      *
-     * @see \Core\Abstracts\AbstractHtml::build()
+     * {@inheritdoc}
+     * @see \Core\Html\AbstractHtml::build()
      */
     public function build()
     {
         if ($this->fixed_to_top) {
             $this->css[] = 'navbar-static-top';
         }
-
+        
         if ($this->container) {
             $this->inner .= '<div class="container">';
         }
-
+        
         $this->inner .= '
-		<div class="navbar-header">
-			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".main-menu-collapse">
-				<span class="sr-onlyToggle navigation"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>';
-
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".main-menu-collapse">
+                <span class="sr-onlyToggle navigation"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>';
+        
         if ($this->brand) {
             $this->inner .= '<a href="' . $this->home_url . '" class="navbar-brand">' . $this->brand . '</a>';
         }
-
+        
         $this->inner .= 's
-		</div>
-		<nav class="collapse navbar-collapse main-menu-collapse" role="navigation">
-			<ul class="nav navbar-nav">';
-
+        </div>
+        <nav class="collapse navbar-collapse main-menu-collapse" role="navigation">
+            <ul class="nav navbar-nav">';
+        
         $this->inner .= $this->buildMenuItems($this->items);
-
+        
         $this->inner .= '
-			</ul>
-		</nav>';
-
+            </ul>
+        </nav>';
+        
         if ($this->container) {
             $this->inner .= '</div>';
         }
-
+        
         return parent::build();
     }
 
@@ -202,27 +194,27 @@ class Navbar extends Nav
      *
      * @return string
      */
-    private function buildMenuItems(array $items)
+    private function buildMenuItems(array $items): string
     {
         $html = '';
-
+        
         foreach ($items as $item) {
-
+            
             if ($this->multilevel && $item->hasChilds()) {
                 $html .= '
-				<li class="navbar-parent">
-					<a href="' . $item->getUrl() . '">' . $item->getText() . '</a>
-					<ul>';
-
+                <li class="navbar-parent">
+                    <a href="' . $item->getUrl() . '">' . $item->getText() . '</a>
+                    <ul>';
+                
                 $html .= $this->buildMenuItems($item->getChilds());
-
+                
                 $html .= '
-					</ul>
-				</li>';
+                    </ul>
+                </li>';
             } else {
-
+                
                 $url = $item->getUrl();
-
+                
                 if ($url) {
                     $html .= '<li><a href="' . $url . '">' . $item->getText() . '</a></li>';
                 } else {
@@ -230,7 +222,7 @@ class Navbar extends Nav
                 }
             }
         }
-
+        
         return $html;
     }
 }
