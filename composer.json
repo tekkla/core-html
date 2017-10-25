@@ -1,46 +1,34 @@
 {
-    "name": "tekkla/core-html",
-    "description": "Library to create simple and even complex html elements out of php objects. No all elements are present. Feel free to contribute html elements or controls.",
-    "license": "MIT",
-    "type": "library",
-    "keywords":
-    [
-        "html",
-        "oop",
-        "forms",
-        "bootstrap",
-        "fontawesome"
-    ],
-
-    "homepage": "https://github.com/tekkla/core-html",
-    "autoload":
-    {
-        "psr-0":
-        {
-            "Core\\Html": ""
-        }
-    },
-
-    "authors":
-    [
-        {
-            "name": "Michael Zorn",
-            "email": "tekkla@tekkla.de",
-            "role": "Developer"
-        }
-    ],
-
-    "require":
-    {
-        "php": ">=7.0.0",
-        "tekkla/core-toolbox": ">=0.0.1"
-    },
-
-    "repositories":
-    [
-        {
-            "type": "composer",
-            "url": "https://packagist.org/"
-        }
-    ]
+	"name" : "tekkla/core-html",
+	"description" : "Library to create simple and even complex html elements out of php objects. No all elements are present. Feel free to contribute html elements or controls.",
+	"license" : "MIT",
+	"type" : "library",
+	"keywords" : [
+		"html",
+		"oop",
+		"forms",
+		"bootstrap",
+		"fontawesome"
+	],
+	"homepage" : "https://github.com/tekkla/core-html",
+	"autoload" : {
+		"psr-0" : {
+			"Core\\Html" : ""
+		}
+	},
+	"authors" : [{
+			"name" : "Michael Zorn",
+			"email" : "tekkla@tekkla.de",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"php" : ">=7.0.0",
+		"tekkla/core-toolbox" : "dev-dev"
+	},
+	"repositories" : [{
+			"type" : "composer",
+			"url" : "https://packagist.org/"
+		}
+	]
 }
