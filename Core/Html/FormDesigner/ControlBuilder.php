@@ -3,7 +3,6 @@ namespace Core\Html\FormDesigner;
 
 use Core\Html\Form\AbstractForm;
 use Core\Html\Controls\UiButton;
-use Core\Html\Form\Button;
 use Core\Html\Form\Checkbox;
 use Core\Html\Form\Input;
 
@@ -11,7 +10,7 @@ use Core\Html\Form\Input;
  * ControlBuilder.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2015
+ * @copyright 2015-2017
  * @license MIT
  */
 class ControlBuilder
