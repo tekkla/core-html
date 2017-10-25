@@ -7,12 +7,12 @@ use Core\Html\Form\Traits\ValueTrait;
  * Button.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class Button extends AbstractForm
 {
-
+    
     use ValueTrait;
 
     /**
@@ -67,7 +67,7 @@ class Button extends AbstractForm
     public function isButton()
     {
         $this->type = 'button';
-
+        
         return $this;
     }
 
@@ -79,7 +79,7 @@ class Button extends AbstractForm
     public function isSubmit()
     {
         $this->type = 'submit';
-
+        
         return $this;
     }
 
@@ -91,7 +91,7 @@ class Button extends AbstractForm
     public function isReset()
     {
         $this->type = 'reset';
-
+        
         return $this;
     }
 
@@ -100,8 +100,8 @@ class Button extends AbstractForm
      *
      * @param string $type
      *            Type of element (submit, reset or button)
-     *
-     * @throws InvalidArgumentException
+     *            
+     * @throws FormException
      *
      * @return Button
      */
@@ -112,13 +112,13 @@ class Button extends AbstractForm
             'reset',
             'button'
         ];
-
+        
         if (! in_array($type, $types)) {
             Throw new FormException('Wrong button type set.');
         }
-
+        
         $this->type = $type;
-
+        
         return $this;
     }
 
@@ -132,22 +132,22 @@ class Button extends AbstractForm
     public function setFormId(string $form_id): Button
     {
         $this->attribute['form'] = $form_id;
-
+        
         return $this;
     }
 
     /**
      * Sets the url where to send form data on submit (only on buttontype "submit").
      *
-     * @param string|Url $url
+     * @param string $url
      *            Url string or object used as form action
-     *
+     *            
      * @return Button
      */
     public function setFormAction(string $url): Button
     {
         $this->attribute['formaction'] = $url;
-
+        
         return $this;
     }
 
@@ -158,25 +158,25 @@ class Button extends AbstractForm
      *
      * @param string $method
      *            Value for the method attribute of from
-     *
-     * @throws InvalidArgumentException
+     *            
+     * @throws FormException
      *
      * @return Button
      */
-    public function setFormMethod($method)
+    public function setFormMethod(string $method): Button
     {
         $methods = [
             'post',
             'get'
         ];
-
+        
         // Safety first. Only allow 'post' or 'get' here.
         if (! in_array($method, $methods)) {
             Throw new FormException('Wrong method set.');
         }
-
+        
         $this->attribute['formmethod'] = $method;
-
+        
         return $this;
     }
 
@@ -187,26 +187,26 @@ class Button extends AbstractForm
      *
      * @param string $method
      *            Value for the method attribute of from
-     *
-     * @throws InvalidArgumentException
+     *            
+     * @throws FormException
      *
      * @return Button
      */
-    public function setFormEnctype($enctype)
+    public function setFormEnctype(string $enctype)
     {
         $enctypes = [
             'application/x-www-form-urlencoded',
             'multipart/form-data',
             'text/plain'
         ];
-
+        
         // Safety first. Only allow 'post' or 'get' here.
         if (! in_array($enctype, $enctypes)) {
             Throw new FormException('Wrong method set.');
         }
-
+        
         $this->attribute['formenctype'] = $enctype;
-
+        
         return $this;
     }
 
@@ -217,10 +217,10 @@ class Button extends AbstractForm
      *
      * @return Button
      */
-    public function setFormTarget($target): Button
+    public function setFormTarget(string $target): Button
     {
         $this->attribute['formtarget'] = $target;
-
+        
         return $this;
     }
 
@@ -232,19 +232,19 @@ class Button extends AbstractForm
     public function setFormNoValidate(): Button
     {
         $this->attribute['formnovalidate'] = false;
-
+        
         return $this;
     }
 
     /**
-     * (non-PHPdoc)
      *
-     * @see \Core\Abstracts\AbstractHtml::build()
+     * {@inheritdoc}
+     * @see \Core\Html\AbstractHtml::build()
      */
     public function build()
     {
         $this->attribute['type'] = $this->type;
-
+        
         return parent::build();
     }
 }
