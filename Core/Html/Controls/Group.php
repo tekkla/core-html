@@ -7,7 +7,7 @@ use Core\Html\Elements\Div;
  * Group.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2015
+ * @copyright 2015-2017
  * @license MIT
  */
 class Group extends Div
@@ -73,10 +73,10 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function usePanel($use_panel = true)
+    public function usePanel(bool $use_panel = true): Group
     {
         $this->use_panel = (bool) $use_panel;
-
+        
         return $this;
     }
 
@@ -84,15 +84,15 @@ class Group extends Div
      * Set heading text and size
      *
      * @param string $heading_text
-     * @param number $heading_size
+     * @param int $heading_size
      *
      * @return \Core\Html\Controls\Group
      */
-    public function setHeading($heading_text, $heading_size = 2)
+    public function setHeading(string $heading_text, int $heading_size = 2): Group
     {
         $this->heading_text = $heading_text;
         $this->heading_size = is_int($heading_size) ? $heading_size : 2;
-
+        
         return $this;
     }
 
@@ -103,10 +103,10 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function setDescription($description)
+    public function setDescription(string $description): Group
     {
         $this->description = $description;
-
+        
         return $this;
     }
 
@@ -117,10 +117,10 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function setFooter($footer)
+    public function setFooter(string $footer): Group
     {
         $this->footer = $footer;
-
+        
         return $this;
     }
 
@@ -131,10 +131,10 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function addContent($content)
+    public function addContent(string $content): Group
     {
         $this->content .= $content;
-
+        
         return $this;
     }
 
@@ -143,10 +143,10 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function noRow()
+    public function noRow(): Group
     {
         $this->row = false;
-
+        
         return $this;
     }
 
@@ -156,104 +156,103 @@ class Group extends Div
      *
      * @return \Core\Html\Controls\Group
      */
-    public function newRow()
+    public function newRow(): Group
     {
         $this->row = true;
-
+        
         return $this;
     }
 
     /**
-     * (non-PHPdoc)
      *
-     * @see \Core\Abstracts\AbstractHtml::build()
+     * {@inheritdoc}
+     * @see \Core\Html\AbstractHtml::build()
      */
     public function build()
     {
         if ($this->use_panel == true) {
-
+            
             // Bootstrap panel template
             $this->inner .= '<div class="panel panel-' . $this->panel_type . '">';
-
+            
             if (isset($this->heading_text)) {
                 $this->inner .= '{heading}';
             }
-
+            
             $this->inner .= '<div class="panel-body">';
-
+            
             if (isset($this->description)) {
                 $this->inner .= '{description}';
             }
-
+            
             if ($this->row) {
                 $this->inner .= '<div class="row">';
             }
-
+            
             $this->inner .= '{content}</div>';
-
+            
             if ($this->row) {
                 $this->inner .= '</div>';
             }
-
+            
             if (isset($this->footer)) {
                 $this->inner .= '{footer}';
             }
-
+            
             $this->inner .= '</div>';
-        }
-        else {
-
+        } else {
+            
             if ($this->row) {
                 $this->inner .= '<div class="row';
             }
-
+            
             if (isset($this->heading_text)) {
                 $this->inner .= '{heading}';
             }
-
+            
             if (isset($this->description)) {
                 $this->inner .= '{description}';
             }
-
+            
             $this->inner .= '{content}';
-
+            
             if (isset($this->footer)) {
                 $this->inner .= '{footer}';
             }
-
+            
             if ($this->row) {
                 $this->inner .= '</div>';
             }
         }
-
+        
         // Create possible heading
         if (isset($this->heading_text)) {
-
+            
             // Heading: plain or withe BS title?
             $heading = '<h' . $this->heading_size . ($this->use_panel == true ? ' class="panel-title"' : '') . '>' . $this->heading_text . '</h' . $this->heading_size . '>';
-
+            
             // Replace heading in BS panel template...
             $this->inner = str_replace('{heading}', $this->use_panel == true ? '<div class="panel-heading">' . $heading . '</div>' : $heading, $this->inner);
         }
-
+        
         // Is there a description do create?
         if (isset($this->description)) {
-
+            
             // The description with small
             $description = '<p class="small">' . $this->description . '</p>';
-
+            
             // Into the panel template...
             $this->inner = str_replace('{description}', $description, $this->inner);
         }
-
+        
         // Add the content
         $this->inner = str_replace('{content}', $this->content, $this->inner);
-
+        
         if (isset($this->footer)) {
             $footer = '<span class="help-block">' . $this->description . '</span>';
             $this->inner = str_replace('{footer}', $this->use_panel == true ? '<div class="panel-footer">' . $footer . '</div>' : $footer, $this->inner);
         }
-
+        
         return parent::build();
     }
 }
