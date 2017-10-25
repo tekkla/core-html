@@ -9,7 +9,7 @@ use Core\Html\FormDesigner\Controls\ControlsCollectionInterface;
  * FormElement.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2016-2017
  * @license MIT
  */
 class FormElement
@@ -29,48 +29,12 @@ class FormElement
      */
     private $content = '';
 
-    private $app_name = '';
-
-    private $container_name = '';
-
-    public function setAppName($app_name)
-    {
-        $this->app_name = $app_name;
-
-        return $this;
-    }
-
-    public function getAppName()
-    {
-        if (! $this->app_name) {
-            Throw new FormDesignerException('No app name set.');
-        }
-
-        return $this->app_name;
-    }
-
-    public function setContainerName($container_name)
-    {
-        $this->container_name = $container_name;
-
-        return $this;
-    }
-
-    public function getContainerName()
-    {
-        if (! $this->container_name) {
-            Throw new FormDesignerException('No container name set.');
-        }
-
-        return $this->container_name;
-    }
-
-    /**
+     /**
      * Sets the element.
      *
-     * @param sting|AbstractForm|AbstractHtml $element
+     * @param string|AbstractForm|AbstractHtml $element
      *
-     * @return Ambigous <\Core\Html\AbstractForm, \Core\Html\AbstractHtml, \Core\Html\FormDesigner\FormGroup>
+     * @return mixed<\Core\Html\AbstractForm, \Core\Html\AbstractHtml, \Core\Html\FormDesigner\FormGroup>
      */
     public function &setContent($content)
     {
@@ -105,7 +69,7 @@ class FormElement
     /**
      * Returns the set element.
      *
-     * @return Ambigous <string, \Core\Html\AbstractForm, \Core\Html\AbstractHtml>
+     * @return mixed <string, \Core\Html\AbstractForm, \Core\Html\AbstractHtml>
      */
     public function getContent()
     {
@@ -117,7 +81,7 @@ class FormElement
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
