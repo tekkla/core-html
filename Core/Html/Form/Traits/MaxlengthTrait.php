@@ -2,7 +2,7 @@
 namespace Core\Html\Form\Traits;
 
 use Core\Html\HtmlException;
-use Core\Html\Form\Textarea;
+use Core\Html\Form\Input;
 
 /**
  * MaxlengthTrait.php
@@ -19,11 +19,11 @@ trait MaxlengthTrait
      *
      * @param int $maxlength
      *
-     * @throws HtmlException::
+     * @throws HtmlException
      *
-     * @return \Core\Html\Form\Textarea
+     * @return \Core\Html\Form\Input
      */
-    public function setMaxlength(int $maxlength): Textarea
+    public function setMaxlength(int $maxlength): Input
     {
         if (!$maxlength) {
             Throw new HtmlException('A html form textareas maxlength attribute needs to be of type integer.');
