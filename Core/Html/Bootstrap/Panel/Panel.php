@@ -83,29 +83,29 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\Bootstrap\BootstrapContextInterface::getContext()
      */
-    public function getContext()
+    public function getContext(): string
     {
         return $this->context;
     }
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\Bootstrap\BootstrapContextInterface::setContext()
      */
-    public function setContext($context)
+    public function setContext(string $context)
     {
         $this->context = $context;
     }
 
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Core\Html\Bootstrap\Panel\AbstractPanelElement::build()
      */
@@ -116,4 +116,3 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
         return parent::build();
     }
 }
-
