@@ -26,7 +26,7 @@ trait MaxlengthTrait
     public function setMaxlength(int $maxlength): Input
     {
         if (!$maxlength) {
-            Throw new HtmlException('A html form textareas maxlength attribute needs to be of type integer.');
+            Throw new HtmlException('A html form inputs maxlength attribute needs to be of type integer.');
         }
         
         $this->attribute['maxlength'] = $maxlength;
