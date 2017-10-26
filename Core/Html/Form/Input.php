@@ -6,6 +6,7 @@ use Core\Html\Form\Traits\MaxlengthTrait;
 use Core\Html\Form\Traits\PlaceholderTrait;
 use Core\Html\Form\Traits\IsCheckedTrait;
 use Core\Html\Form\Traits\IsMultipleTrait;
+use Core\Html\Form\Interfaces\PlaceholderInterface;
 
 /**
  * Input.php
@@ -14,7 +15,7 @@ use Core\Html\Form\Traits\IsMultipleTrait;
  * @copyright 2016-2017
  * @license MIT
  */
-class Input extends AbstractForm
+class Input extends AbstractForm implements PlaceholderInterface
 {
     use ValueTrait;
     use MaxlengthTrait;

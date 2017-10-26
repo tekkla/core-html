@@ -4,6 +4,7 @@ namespace Core\Html\Form;
 use Core\Html\Form\Traits\ValueTrait;
 use Core\Html\Form\Traits\MaxlengthTrait;
 use Core\Html\Form\Traits\PlaceholderTrait;
+use Core\Html\Form\Interfaces\PlaceholderInterface;
 
 /**
  * Textarea.php
@@ -12,7 +13,7 @@ use Core\Html\Form\Traits\PlaceholderTrait;
  * @copyright 2016
  * @license MIT
  */
-class Textarea extends AbstractForm
+class Textarea extends AbstractForm implements PlaceholderInterface
 {
 
     use ValueTrait;

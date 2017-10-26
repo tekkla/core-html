@@ -1,7 +1,7 @@
 <?php
 namespace Core\Html\Form\Traits;
 
-use Core\Html\Form\Input;
+use Core\Html\Form\Interfaces\PlaceholderInterface;
 
 /**
  * PlaceholderTrait.php
@@ -14,14 +14,14 @@ trait PlaceholderTrait
 {
 
     /**
-     * Sets cointent a placholder text
+     * Sets cointent a placeholder text
      *
      * @param string $placeholder
      *            The placeholder text
      *            
-     * @return Input
+     * @return PlaceholderInterface
      */
-    public function setPlaceholder(string $placeholder): Input
+    public function setPlaceholder(string $placeholder): PlaceholderInterface
     {
         $this->attribute['placeholder'] = $placeholder;
         
