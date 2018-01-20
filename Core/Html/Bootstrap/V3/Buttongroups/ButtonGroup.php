@@ -34,7 +34,7 @@ class ButtonGroup extends Div
      *
      * @return Button
      */
-    public function &createButton($button_class='Bootstrap\Button\Button')
+    public function &createButton($button_class='Bootstrap\V3\Button\Button')
     {
         $button = $this->factory->create($button_class);
 
