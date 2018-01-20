@@ -138,7 +138,7 @@ class Navbar extends Nav
             Throw new HtmlException(sprintf('They type "%s" is not a valid navbar elementtype. Allowed are %s.', $type, implode(', ', $this->element_types)));
         }
         
-        return $this->elements[] = $this->factory->create('Bootstrap\Navbar\\' . $type . 'Element');
+        return $this->elements[] = $this->factory->create('Bootstrap\V3\Navbar\\' . $type . 'Element');
     }
 
     /**

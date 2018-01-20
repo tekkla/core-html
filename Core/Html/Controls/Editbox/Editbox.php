@@ -318,7 +318,7 @@ class Editbox implements HtmlBuildableInterface
         // Footer with toolbar
 
         /* @var $toolbar \Core\Html\Bootstrap\Buttongroups\ButtonToolbar */
-        $toolbar = $this->factory->create('Bootstrap\Buttongroups\ButtonToolbar');
+        $toolbar = $this->factory->create('Bootstrap\V3\Buttongroups\ButtonToolbar');
 
         $create_action = function (Action $action, $with_link = false) {
 
@@ -412,7 +412,7 @@ class Editbox implements HtmlBuildableInterface
                     $group->addCss('btn-group-sm pull-right dropup');
 
                     /* @var $context_menu \Core\Html\Form\Button */
-                    $context_menu = $this->factory->create('Bootstrap\Button\Button');
+                    $context_menu = $this->factory->create('Bootstrap\V3\Button\Button');
                     $context_menu->addCss('dropdown-toggle');
                     $context_menu->addAria([
                         'haspopup' => "true",

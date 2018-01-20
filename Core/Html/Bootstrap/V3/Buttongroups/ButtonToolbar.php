@@ -31,7 +31,7 @@ class ButtonToolbar extends Div
      */
     public function &createButtongroup(): ButtonGroup
     {
-        return $this->addButtongroup($this->factory->create('Bootstrap\Buttongroups\ButtonGroup'));
+        return $this->addButtongroup($this->factory->create('Bootstrap\V3\Buttongroups\ButtonGroup'));
     }
 
     /**
