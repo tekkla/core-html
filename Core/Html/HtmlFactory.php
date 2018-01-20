@@ -19,7 +19,7 @@ class HtmlFactory
      * Injects an instance of the HtmlFactory so the created html object can use it to create sub elements if needed.
      *
      * @param string $class
-     *            Short NS to used class like 'Elements\Div' or 'Form\Input' or 'Bootstrap\Button\Button'.
+     *            Short NS to used class like 'Elements\Div' or 'Form\Input' or 'Bootstrap\V3\Button\Button'.
      * @param array $args
      *            Optional assoc arguments array to be used as $html->$method($value) call.
      *

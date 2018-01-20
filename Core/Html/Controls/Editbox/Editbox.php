@@ -61,7 +61,7 @@ class Editbox implements HtmlBuildableInterface
     /**
      * Bootstrap Panel component of editbox
      *
-     * @var \Core\Html\Bootstrap\Panel\Panel
+     * @var \Core\Html\Bootstrap\V3\Panel\Panel
      */
     public $panel;
 
@@ -271,7 +271,7 @@ class Editbox implements HtmlBuildableInterface
     /**
      * (non-PHPdoc)
      *
-     * @see \Core\Html\Bootstrap\Panel\Panel::build()
+     * @see \Core\Html\Bootstrap\V3\Panel\Panel::build()
      *
      * @throws ControlException
      */
@@ -317,7 +317,7 @@ class Editbox implements HtmlBuildableInterface
 
         // Footer with toolbar
 
-        /* @var $toolbar \Core\Html\Bootstrap\Buttongroups\ButtonToolbar */
+        /* @var $toolbar \Core\Html\Bootstrap\V3\Buttongroups\ButtonToolbar */
         $toolbar = $this->factory->create('Bootstrap\V3\Buttongroups\ButtonToolbar');
 
         $create_action = function (Action $action, $with_link = false) {
@@ -365,7 +365,7 @@ class Editbox implements HtmlBuildableInterface
                 case 0:
                 case 1:
 
-                    /* @var $group \Core\Html\Bootstrap\Buttongroups\ButtonGroup */
+                    /* @var $group \Core\Html\Bootstrap\V3\Buttongroups\ButtonGroup */
                     $group = $toolbar->createButtongroup();
                     $group->addCss('btn-group-sm');
 
@@ -407,7 +407,7 @@ class Editbox implements HtmlBuildableInterface
                 case 2:
                 default:
 
-                    /* @var $group \Core\Html\Bootstrap\Buttongroups\ButtonGroup */
+                    /* @var $group \Core\Html\Bootstrap\V3\Buttongroups\ButtonGroup */
                     $group = $toolbar->createButtongroup();
                     $group->addCss('btn-group-sm pull-right dropup');
 
