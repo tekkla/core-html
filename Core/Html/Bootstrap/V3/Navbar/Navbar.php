@@ -94,7 +94,7 @@ class Navbar extends Nav
      *
      * @param bool $collapsible
      *
-     * @return \Core\Html\Bootstrap\Navbar\Navbar|boolean
+     * @return \Core\Html\Bootstrap\V3\Navbar\Navbar|boolean
      */
     public function isCollapsible(bool $collapsible = null): bool
     {

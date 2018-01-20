@@ -20,7 +20,7 @@ class ButtonElement extends AbstractNavbarElement
     /**
      *
      * {@inheritdoc}
-     * @see \Core\Html\Bootstrap\Navbar\AbstractNavbarElement::build()
+     * @see \Core\Html\Bootstrap\V3\Navbar\AbstractNavbarElement::build()
      */
     public function build()
     {}

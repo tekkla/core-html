@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap;
+namespace Core\Html\Bootstrap\V3;
 
 /**
  * BootstrapContextInterface.php

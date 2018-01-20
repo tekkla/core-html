@@ -2,7 +2,7 @@
 namespace Core\Html\Bootstrap\V3\Buttongroups;
 
 use Core\Html\Elements\Div;
-use Core\Html\Bootstrap\Button\Button;
+use Core\Html\Bootstrap\V3\Button\Button;
 use Core\Html\AbstractHtml;
 
 /**

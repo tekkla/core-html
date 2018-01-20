@@ -2,7 +2,7 @@
 namespace Core\Html\Controls\Editbox;
 
 use Core\Html\FormDesigner\FormDesigner;
-use Core\Html\Bootstrap\Panel\Panel;
+use Core\Html\Bootstrap\V3\Panel\Panel;
 use Core\Html\HtmlBuildableInterface;
 use Core\Html\Controls\ControlException;
 

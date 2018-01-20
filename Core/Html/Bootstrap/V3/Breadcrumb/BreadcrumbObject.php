@@ -44,7 +44,7 @@ class BreadcrumbObject
      *
      * @param string $href
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function setHref($href)
     {
@@ -58,7 +58,7 @@ class BreadcrumbObject
      *
      * @param string $title
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function setTitle($title)
     {
@@ -72,7 +72,7 @@ class BreadcrumbObject
      *
      * @param string $text
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function setText($text)
     {
@@ -86,7 +86,7 @@ class BreadcrumbObject
      *
      * @param string $active
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function setActive($active = true)
     {

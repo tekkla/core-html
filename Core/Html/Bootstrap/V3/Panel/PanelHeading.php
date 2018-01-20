@@ -15,7 +15,7 @@ class PanelHeading extends AbstractPanelElement
 
     /**
      *
-     * @var \Core\Html\Bootstrap\Panel\PanelTitle
+     * @var \Core\Html\Bootstrap\V3\Panel\PanelTitle
      */
     private $title;
 
@@ -33,7 +33,7 @@ class PanelHeading extends AbstractPanelElement
      * @param boolean $autoadd
      *            Optional flag to dis-/enable autoadd of created object as title object
      *
-     * @return \Core\Html\Bootstrap\Panel\PanelTitle
+     * @return \Core\Html\Bootstrap\V3\Panel\PanelTitle
      */
     public function &createTitle($text = '', $autoadd = true)
     {
@@ -63,7 +63,7 @@ class PanelHeading extends AbstractPanelElement
      *
      * {@inheritDoc}
      *
-     * @see \Core\Html\Bootstrap\Panel\AbstractPanelElement::build()
+     * @see \Core\Html\Bootstrap\V3\Panel\AbstractPanelElement::build() 
      */
     public function build()
     {

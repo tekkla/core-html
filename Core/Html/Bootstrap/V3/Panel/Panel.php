@@ -2,7 +2,7 @@
 namespace Core\Html\Bootstrap\V3\Panel;
 
 use Core\Html\Elements\Div;
-use Core\Html\Bootstrap\BootstrapContextInterface;
+use Core\Html\Bootstrap\V3\BootstrapContextInterface;
 
 /**
  * Panel.php
@@ -24,7 +24,7 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
     {
         // Panels are divs
         $this->html = new Div();
-        $this->html->addCss([
+        $this->html->addCss([ 
             'panel'
         ]);
     }
@@ -85,7 +85,7 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
      *
      * {@inheritdoc}
      *
-     * @see \Core\Html\Bootstrap\BootstrapContextInterface::getContext()
+     * @see \Core\Html\Bootstrap\V3\BootstrapContextInterface::getContext()
      */
     public function getContext(): string
     {
@@ -96,7 +96,7 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
      *
      * {@inheritdoc}
      *
-     * @see \Core\Html\Bootstrap\BootstrapContextInterface::setContext()
+     * @see \Core\Html\Bootstrap\V3\BootstrapContextInterface::setContext()
      */
     public function setContext(string $context)
     {
@@ -107,7 +107,7 @@ class Panel extends AbstractPanelElement implements BootstrapContextInterface
      *
      * {@inheritdoc}
      *
-     * @see \Core\Html\Bootstrap\Panel\AbstractPanelElement::build()
+     * @see \Core\Html\Bootstrap\V3\Panel\AbstractPanelElement::build()
      */
     public function build()
     {

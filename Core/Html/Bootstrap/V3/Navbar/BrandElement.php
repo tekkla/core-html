@@ -59,7 +59,7 @@ class BrandElement extends AbstractNavbarElement
      *
      * @param Img $img
      *
-     * @return \Core\Html\Bootstrap\Navbar\BrandElement
+     * @return \Core\Html\Bootstrap\V3\Navbar\BrandElement
      */
     public function setImage(Img $img): BrandElement
     {
@@ -73,7 +73,7 @@ class BrandElement extends AbstractNavbarElement
      *
      * @param string $text
      *
-     * @return \Core\Html\Bootstrap\Navbar\BrandElement
+     * @return \Core\Html\Bootstrap\V3\Navbar\BrandElement
      */
     public function setText(string $text): BrandElement
     {
@@ -118,7 +118,7 @@ class BrandElement extends AbstractNavbarElement
     /**
      *
      * {@inheritdoc}
-     * @see \Core\Html\Bootstrap\Navbar\AbstractNavbarElement::build()
+     * @see \Core\Html\Bootstrap\V3\Navbar\AbstractNavbarElement::build()
      */
     public function build()
     {

@@ -16,7 +16,7 @@ class Breadcrumb
     /**
      * Adds a BreadcrumbObject to the breadcrumbs list
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\Breadcrumb
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\Breadcrumb
      */
     public function addBreadcrumb(BreadcrumbObject $breadcrumb)
     {
@@ -31,7 +31,7 @@ class Breadcrumb
      * @param string $text Text to show
      * @param string $title Title to use
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function createActiveItem($text, $title = '')
     {
@@ -56,7 +56,7 @@ class Breadcrumb
      * @param string $href Href of the link
      * @param string $title Title to use
      *
-     * @return \Core\Html\Bootstrap\Breadcrumb\BreadcrumbObject
+     * @return \Core\Html\Bootstrap\V3\Breadcrumb\BreadcrumbObject
      */
     public function createItem($text, $href, $title = '')
     {

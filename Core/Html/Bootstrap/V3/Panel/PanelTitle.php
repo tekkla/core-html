@@ -103,7 +103,7 @@ class PanelTitle extends AbstractPanelElement implements HtmlBuildableInterface
      *
      * {@inheritDoc}
      *
-     * @see \Core\Html\Bootstrap\Panel\AbstractPanelElement::build()
+     * @see \Core\Html\Bootstrap\V3\Panel\AbstractPanelElement::build()
      */
     public function build()
     {

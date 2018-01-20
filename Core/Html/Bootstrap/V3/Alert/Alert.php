@@ -3,7 +3,7 @@ namespace Core\Html\Bootstrap\V3\Alert;
 
 use Core\Html\AbstractHtml;
 use Core\Html\Elements\Div;
-use Core\Html\Bootstrap\BootstrapContextInterface;
+use Core\Html\Bootstrap\V3\BootstrapContextInterface;
 use Core\Html\HtmlBuildableInterface;
 use Core\Html\HtmlException;
 
@@ -83,7 +83,7 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
      *
      * {@inheritdoc}
      *
-     * @see \Core\Html\Bootstrap\BootstrapContextInterface::setContext()
+     * @see \Core\Html\Bootstrap\V3\BootstrapContextInterface::setContext()
      */
     public function setContext(string $context)
     {
@@ -106,7 +106,7 @@ class Alert implements HtmlBuildableInterface, BootstrapContextInterface
      *
      * {@inheritdoc}
      *
-     * @see \Core\Html\Bootstrap\BootstrapContextInterface::getContext()
+     * @see \Core\Html\Bootstrap\V3\BootstrapContextInterface::getContext()
      */
     public function getContext(): string
     {
