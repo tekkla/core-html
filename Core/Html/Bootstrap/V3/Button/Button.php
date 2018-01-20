@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Button;
+namespace Core\Html\Bootstrap\V3\Button;
 
 use Core\Html\Form\Button as FormButton;
 use Core\Html\HtmlBuildableInterface;

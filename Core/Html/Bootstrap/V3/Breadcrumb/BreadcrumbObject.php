@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Breadcrumb;
+namespace Core\Html\Bootstrap\V3\Breadcrumb;
 
 /**
  * BreadcrumbObject.php

@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Navbar;
+namespace Core\Html\Bootstrap\V3\Navbar;
 
 use Core\Html\Elements\Nav;
 use Core\Html\HtmlException;

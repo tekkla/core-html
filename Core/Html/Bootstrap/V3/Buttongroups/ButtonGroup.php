@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Buttongroups;
+namespace Core\Html\Bootstrap\V3\Buttongroups;
 
 use Core\Html\Elements\Div;
 use Core\Html\Bootstrap\Button\Button;

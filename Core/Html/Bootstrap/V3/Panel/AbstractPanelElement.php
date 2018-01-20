@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Panel;
+namespace Core\Html\Bootstrap\V3\Panel;
 
 use Core\Html\HtmlBuildableInterface;
 use Core\Html\HtmlException;

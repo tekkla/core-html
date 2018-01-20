@@ -1,5 +1,5 @@
 <?php
-namespace Core\Html\Bootstrap\Alert;
+namespace Core\Html\Bootstrap\V3\Alert;
 
 use Core\Html\AbstractHtml;
 use Core\Html\Elements\Div;
