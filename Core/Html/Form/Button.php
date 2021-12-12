@@ -41,21 +41,21 @@ class Button extends AbstractForm
      *
      * @var string
      */
-    protected $type = 'button';
+    protected string $type = 'button';
 
     /**
      * Element type
      *
-     * @var $string
+     * @var string
      */
-    protected $element = 'button';
+    protected string $element = 'button';
 
     /**
      * Basic data attributes
      *
      * @var array
      */
-    protected $data = [
+    protected array $data = [
         'control' => 'button'
     ];
 
@@ -67,7 +67,7 @@ class Button extends AbstractForm
     public function isButton()
     {
         $this->type = 'button';
-        
+
         return $this;
     }
 
@@ -79,7 +79,7 @@ class Button extends AbstractForm
     public function isSubmit()
     {
         $this->type = 'submit';
-        
+
         return $this;
     }
 
@@ -91,7 +91,7 @@ class Button extends AbstractForm
     public function isReset()
     {
         $this->type = 'reset';
-        
+
         return $this;
     }
 

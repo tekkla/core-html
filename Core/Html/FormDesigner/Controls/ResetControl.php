@@ -13,5 +13,5 @@ use Core\Html\Form\Button;
 class ResetControl extends Button
 {
 
-    protected $type = 'reset';
+    protected string $type = 'reset';
 }

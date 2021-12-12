@@ -2,12 +2,13 @@
 namespace Core\Html\Form;
 
 use Core\Html\AbstractHtml;
+use Core\Html\HtmlException;
 
 /**
  * AbstractForm.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016-2017
+ * @copyright 2016-2021
  * @license MIT
  * 
  * @todo Move the bootstrap and datepicker dependencies into a seperate control!
@@ -20,21 +21,21 @@ class AbstractForm extends AbstractHtml
      *
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * Flag for binding element to a model field or not
      *
      * @var bool
      */
-    private $bound = true;
+    private bool $bound = true;
 
     /**
      * Width for the element
      *
      * @var string
      */
-    private $element_width;
+    private string $element_width;
 
     /**
      * Value for creation an hidden field for the original value
@@ -42,34 +43,28 @@ class AbstractForm extends AbstractHtml
      *
      * @var bool
      */
-    private $compare_value;
+    private bool $compare_value;
 
     /**
      * Signals that we want a label or not
      *
      * @var bool
      */
-    private $use_label = true;
-
-    /**
-     *
-     * @var bool
-     */
-    private $is_array = false;
+    // private $use_label = true;
 
     /**
      * Size of control
      *
      * @var string
      */
-    private $control_size;
+    private string $control_size;
 
     /**
      * Public html object of a form label
      *
      * @var Label
      */
-    public $label;
+    public Label $label;
 
     /**
      * Flags this element to use no label
@@ -77,7 +72,6 @@ class AbstractForm extends AbstractHtml
     public function noLabel()
     {
         unset($this->label);
-        $this->use_label = false;
     }
 
     /**
@@ -85,6 +79,7 @@ class AbstractForm extends AbstractHtml
      *
      * @param string $label_text
      *            The text to show as label
+     * @throws HtmlException
      */
     public function setLabel(string $label_text)
     {
@@ -95,9 +90,9 @@ class AbstractForm extends AbstractHtml
     /**
      * Returns the inner value of label or false if label is not set.
      *
-     * @return bool|string
+     * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         if (isset($this->label)) {
             return $this->label->getInner();
@@ -141,12 +136,13 @@ class AbstractForm extends AbstractHtml
     }
 
     /**
-     * Returns the type attribute but only if a setType() method exists in the childclass and the type attribute isset.
+     * Returns the type attribute but only if a setType() method exists in the child class and the type attribute isset.
      * This method is used to determine the type of input form elements.
      *
      * @return string|null
+     * @throws HtmlException
      */
-    public function getType()
+    public function getType(): ?string
     {
         return method_exists($this, 'setType') ? $this->getAttribute('type') : null;
     }
@@ -182,7 +178,7 @@ class AbstractForm extends AbstractHtml
     }
 
     /**
-     * Handles the creation state of an hidden element for comparision
+     * Handles the creation state of a hidden element for comparison
      *
      * If $compare parameter not set, the method returns the current state.
      *
@@ -210,7 +206,7 @@ class AbstractForm extends AbstractHtml
      *
      * @return mixed
      */
-    public function getCompare()
+    public function getCompare(): mixed
     {
         if (!isset($this->compare_value)) {
             Throw new FormException('No compare value set.');
@@ -220,7 +216,7 @@ class AbstractForm extends AbstractHtml
     }
 
     /**
-     * Assign an bootstrap element width
+     * Assign a bootstrap element width
      *
      * @param string $element_width
      *            BS grid sizes like "sm-3" or "lg-5". Needed "col-" will be added by the method.
@@ -264,7 +260,7 @@ class AbstractForm extends AbstractHtml
     /**
      * Checks for a set element width
      */
-    public function hasElementWidth()
+    public function hasElementWidth(): bool
     {
         return isset($this->element_width);
     }

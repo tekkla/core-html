@@ -22,21 +22,21 @@ final class FormDesigner implements HtmlBuildableInterface
      *
      * @var array
      */
-    private static $used_ids = [];
+    private static array $used_ids = [];
 
     /**
      * Forms group storage
      *
      * @var array
      */
-    private $groups = [];
+    private array $groups = [];
 
     /**
      * The mode the data will be send to server
      *
      * @var string Options: full | ajax / Default: full
      */
-    private $send_mode = 'submit';
+    private string $send_mode = 'submit';
 
     /**
      * Displaymode of the form h = horizontal v = vertical (default) i = inline
@@ -44,14 +44,14 @@ final class FormDesigner implements HtmlBuildableInterface
      * @see http://getbootstrap.com/css/#forms
      * @var string
      */
-    private $display_mode = 'v';
+    private string $display_mode = 'v';
 
     /**
      * Labels grid width when using horizontal displaymode
      *
-     * @var number
+     * @var int
      */
-    private $label_width = 3;
+    private int $label_width = 3;
 
     /**
      * The gridtype used in the form Select from:
@@ -60,49 +60,49 @@ final class FormDesigner implements HtmlBuildableInterface
      * @see http://getbootstrap.com/css/#grid-options
      * @var string
      */
-    private $grid_size = 'sm';
+    private string $grid_size = 'sm';
 
     /**
      *
      * @var array
      */
-    private $data = [];
+    private array $data = [];
 
     /**
      *
      * @var array
      */
-    private $errors = [];
+    private array $errors = [];
 
     /**
      *
      * @var array
      */
-    private $token = [];
+    private array $token = [];
 
     /**
      *
      * @var string
      */
-    private $namespace = 'core';
+    private string $namespace = 'core';
 
     /**
      *
      * @var bool
      */
-    private $fadeout = true;
+    private bool $fadeout = true;
 
     /**
      *
      * @var Form
      */
-    public $html;
+    public Form $html;
 
     /**
      *
      * @var HtmlFactory
      */
-    public $factory;
+    public HtmlFactory $factory;
 
     /**
      * Constructor

@@ -40,7 +40,7 @@ class Button extends FormButton
      *
      * @var $string
      */
-    protected $element = 'button';
+    protected string $element = 'button';
 
     /**
      * Basic css classes

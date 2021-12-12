@@ -4,6 +4,7 @@ namespace Core\Html\Form;
 use Core\Html\Form\Traits\IsMultipleTrait;
 use Core\Html\Form\Traits\SizeTrait;
 use Core\Html\Form\Traits\ValueTrait;
+use Core\Html\HtmlException;
 
 /**
  * Select.php
@@ -18,25 +19,24 @@ class Select extends AbstractForm
     use SizeTrait;
     use ValueTrait;
 
-    private $options = [];
-
-    protected $element = 'select';
-
-    protected $data = [
+    private array $options = [];
+    protected string $element = 'select';
+    protected array $data = [
         'control' => 'select'
     ];
 
-    protected $value = [];
+    protected string|array $value = [];
 
     /**
      * Creates an Option object and returns it
      *
+     * @param string $optgroup
      * @return Option
+     * @throws HtmlException
      */
-    public function &createOption($optgroup = ''): Option
+    public function &createOption(string $optgroup = ''): Option
     {
         $option = $this->factory->create('Form\Option');
-
         $this->addOption($option, $optgroup);
 
         return $option;
@@ -49,7 +49,7 @@ class Select extends AbstractForm
      * If inner parameter is not set, the value is the inner
      * content of option and has no value attribute.
      *
-     * @param string|int $value
+     * @param int|string|null $value
      *            Option value
      * @param
      *            string|int Optional $inner
@@ -60,10 +60,10 @@ class Select extends AbstractForm
      *            Related optgroup
      *
      * @return Option
+     * @throws HtmlException
      */
-    public function &newOption($value = null, $inner = null, bool $selected = false, string $optgroup = ''): Option
+    public function &newOption(int|string $value = null, $inner = null, bool $selected = false, string $optgroup = ''): Option
     {
-        /* @var $option \Core\Html\Form\Option */
         $option = $this->factory->create('Form\Option');
 
         if (isset($value)) {
@@ -115,7 +115,7 @@ class Select extends AbstractForm
     }
 
     /**
-     * Builds otion element
+     * Builds option element
      *
      * @param Option $option
      *
@@ -138,7 +138,7 @@ class Select extends AbstractForm
      *
      * @see \Core\Html\AbstractHtml::build()
      */
-    public function build()
+    public function build(): string
     {
         foreach ($this->options as $key => $option) {
 

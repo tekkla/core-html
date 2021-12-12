@@ -8,7 +8,7 @@ use Core\Html\Form\Traits\IsCheckedTrait;
  * Checkbox.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2021
  * @license MIT
  */
 class Checkbox extends Input
@@ -16,15 +16,12 @@ class Checkbox extends Input
     use ValueTrait;
     use IsCheckedTrait;
 
-    protected $type = 'checkbox';
-
-    protected $element = 'input';
-
-    protected $data = [
+    protected string $type = 'checkbox';
+    protected string $element = 'input';
+    protected array $data = [
         'control' => 'checkbox'
     ];
-
-    protected $attribute = [
+    protected array $attribute = [
         'value' => 1
     ];
 }

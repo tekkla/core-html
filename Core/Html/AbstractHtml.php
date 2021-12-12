@@ -10,7 +10,7 @@ use Core\Toolbox\Arrays\IsAssoc;
  * @copyright 2016
  * @license MIT
  */
-abstract class AbstractHtml implements HtmlBuildableInterface
+abstract class AbstractHtml extends \Core\Html\Form\Option implements HtmlBuildableInterface
 {
 
     /**
@@ -18,7 +18,7 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @var string
      */
-    protected $element;
+    protected string $element;
 
     /**
      * Attribute: name
@@ -60,14 +60,14 @@ abstract class AbstractHtml implements HtmlBuildableInterface
      *
      * @var array
      */
-    protected $attribute = [];
+    protected array $attribute = [];
 
     /**
      * Data attributes
      *
      * @var array
      */
-    protected $data = [];
+    protected array $data = [];
 
     /**
      * Aria attributes

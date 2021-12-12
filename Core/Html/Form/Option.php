@@ -14,16 +14,13 @@ class Option extends AbstractForm
 {
     use ValueTrait;
 
-    protected $element = 'option';
-
-    protected $data = [
+    protected string $element = 'option';
+    protected array $data = [
         'control' => 'option'
     ];
-
-    protected $attribute = [
+    protected array $attribute = [
         'value' => 1
     ];
-
     private $selected = false;
 
     /**

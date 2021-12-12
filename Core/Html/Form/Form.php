@@ -7,15 +7,14 @@ use Core\Html\AbstractHtml;
  * Form.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016
+ * @copyright 2021
  * @license MIT
  */
 class Form extends AbstractHtml
 {
 
-    protected $element = 'form';
-
-    protected $attribute = [
+    protected string $element = 'form';
+    protected array $attribute = [
         'role' => 'form',
         'method' => 'post',
         'enctype' => 'multipart/form-data'
@@ -83,7 +82,7 @@ class Form extends AbstractHtml
      * Use 'post' or 'get'.
      * Form elements are using post by default.
      *
-     * @param string $method
+     * @param string $enctype
      *            Value for the method attribute of from
      *
      * @throws FormException

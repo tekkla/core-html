@@ -13,7 +13,7 @@ use Core\Html\Form\Button;
 class SubmitControl extends Button
 {
 
-    protected $type = 'submit';
+    protected string $type = 'submit';
 
     protected $inner = 'submit';
 

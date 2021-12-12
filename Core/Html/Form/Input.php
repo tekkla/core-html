@@ -12,7 +12,7 @@ use Core\Html\Form\Interfaces\PlaceholderInterface;
  * Input.php
  *
  * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
- * @copyright 2016-2017
+ * @copyright 2016-2021
  * @license MIT
  */
 class Input extends AbstractForm implements PlaceholderInterface
@@ -26,7 +26,7 @@ class Input extends AbstractForm implements PlaceholderInterface
     // element specific value for
     // type: text|hidden|button|submit
     // default: text
-    protected $type = 'text';
+    protected string $type = 'text';
 
     /**
      *

@@ -4,16 +4,16 @@ namespace Core\Html\Form;
 /**
  * Label Form Element
  *
- * @author Michael "Tekkla" Zorn <tekkla@tekkla.d
+ * @author Michael "Tekkla" Zorn <tekkla@tekkla.de>
  * @package TekFW
  * @subpackage Html\Form
  * @license MIT
- * @copyright 2014 by author
+ * @copyright 2014-2021
  */
 class Label extends AbstractForm
 {
 
-    protected $element = 'label';
+    protected string $element = 'label';
 
     /**
      * Sets id of control the label belongs to
